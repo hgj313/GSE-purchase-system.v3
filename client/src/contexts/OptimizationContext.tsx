@@ -17,6 +17,7 @@ interface OptimizationContextType {
   setConstraints: (constraints: OptimizationConstraints) => void;
   isDataLoaded: boolean;
   clearOptimizationData: () => void;
+  clearCurrentOptimization: () => void;
   currentOptimization: any; // 根据实际情况定义更具体的类型
   startOptimization: () => Promise<void>;
   isOptimizing: boolean;
@@ -40,6 +41,11 @@ export const OptimizationContextProvider: React.FC<{ children: ReactNode }> = ({
   // 清除优化数据
   const clearOptimizationData = () => {
     setOptimizationResults(null);
+    setCurrentOptimization(null);
+  };
+
+  // 清除当前优化任务（用于手动返回配置界面时）
+  const clearCurrentOptimization = () => {
     setCurrentOptimization(null);
   };
 
@@ -185,6 +191,7 @@ export const OptimizationContextProvider: React.FC<{ children: ReactNode }> = ({
       setConstraints,
       isDataLoaded,
       clearOptimizationData,
+      clearCurrentOptimization,
       currentOptimization,
       startOptimization,
       isOptimizing,

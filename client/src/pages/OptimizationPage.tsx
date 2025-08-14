@@ -87,6 +87,7 @@ const OptimizationPage: React.FC = () => {
     setConstraints,
     startOptimization,
     clearOptimizationData,
+    clearCurrentOptimization,
     currentOptimization // 确保我们获取了currentOptimization
   } = useOptimizationContext();
   
@@ -97,20 +98,50 @@ const OptimizationPage: React.FC = () => {
   // 监听优化任务状态，完成后自动跳转
   useEffect(() => {
     // 只有当存在一个已完成的优化任务，并且我们尚未为该任务导航过时，才执行跳转
-    if (currentOptimization && currentOptimization.status === 'completed' && currentOptimization.id !== lastNavigatedTaskId.current) {
-      message.success('优化完成！正在跳转到结果页面...', 1.5);
+    if (currentOptimization && currentOptimization.status === 'completed') {
+      // 检查sessionStorage中是否已经标记为已跳转
+      const navigatedKey = `navigated_${currentOptimization.id}`;
+      const hasNavigated = sessionStorage.getItem(navigatedKey);
       
-      // 记录我们已经为这个任务ID导航过，防止重复跳转
-      lastNavigatedTaskId.current = currentOptimization.id;
-      
-      const timer = setTimeout(() => {
-        navigate('/results');
-      }, 1000);
+      if (!hasNavigated) {
+        message.success('优化完成！正在跳转到结果页面...', 1.5);
+        
+        // 在sessionStorage中标记为已跳转
+        sessionStorage.setItem(navigatedKey, 'true');
+        
+        const timer = setTimeout(() => {
+          navigate('/results');
+        }, 1000);
 
-      // 清理函数保持不变，以防组件在计时器完成前被卸载
-      return () => clearTimeout(timer);
+        // 清理函数保持不变，以防组件在计时器完成前被卸载
+        return () => clearTimeout(timer);
+      }
     }
-  }, [currentOptimization, navigate]); // 依赖项中不再需要lastNavigatedTaskId，因为useRef的更新不会触发重渲染
+  }, [currentOptimization, navigate]);
+
+  // 组件挂载时清理过期的sessionStorage标记
+  useEffect(() => {
+    // 清理所有过期的navigated标记（保留最近10个）
+    const keys = Object.keys(sessionStorage);
+    const navigatedKeys = keys.filter(key => key.startsWith('navigated_'));
+    
+    // 如果超过10个标记，清理最早的
+    if (navigatedKeys.length > 10) {
+      navigatedKeys.sort();
+      const keysToRemove = navigatedKeys.slice(0, navigatedKeys.length - 10);
+      keysToRemove.forEach(key => sessionStorage.removeItem(key));
+    }
+  }, []);
+
+  // 组件卸载时清除当前优化任务，防止返回时重复跳转
+  useEffect(() => {
+    return () => {
+      // 只有当优化已完成时才清除任务，避免中断正在进行的优化
+      if (currentOptimization && currentOptimization.status === 'completed') {
+        clearCurrentOptimization();
+      }
+    };
+  }, [currentOptimization, clearCurrentOptimization]);
   
   // 本地UI状态
   const [designCollapsed, setDesignCollapsed] = useState(false);

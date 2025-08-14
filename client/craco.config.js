@@ -1,6 +1,16 @@
 const path = require('path');
 
 module.exports = {
+  devServer: {
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  },
   plugins: [
     {
       plugin: require('babel-plugin-import'),
@@ -68,4 +78,4 @@ module.exports = {
       return webpackConfig;
     },
   },
-}; 
+};

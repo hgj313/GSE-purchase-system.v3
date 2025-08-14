@@ -536,10 +536,11 @@ export const useAsyncOptimization = () => {
             stopPolling();
             console.log(`📋 任务${result.status}:`, taskId);
 
-            // 任务成功完成时自动导航到结果页
+            // 任务成功完成时只保存结果，不自动导航
+            // 导航逻辑由使用此Hook的组件自行处理
             if (result.status === 'completed' && result.results) {
               setOptimizationResults(result.results);
-              navigate('/results');
+              // 移除自动导航，避免重复跳转
             }
           } else {
           console.log(`🔄 任务${result.status}:`, taskId);
