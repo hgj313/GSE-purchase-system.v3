@@ -1713,6 +1713,57 @@
       },
       "createdAt": "2025-08-14T13:00:12.246Z",
       "updatedAt": "2025-08-14T13:00:12.288Z"
+    },
+    {
+      "id": "task_1755412215334_man4y7huv",
+      "status": "failed",
+      "progress": 20,
+      "message": "优化失败: SteelOptimizerV3 is not a constructor",
+      "results": null,
+      "error": "SteelOptimizerV3 is not a constructor",
+      "executionTime": 128,
+      "startTime": "2025-08-17T06:30:15.334Z",
+      "endTime": "2025-08-17T06:30:15.461Z",
+      "inputData": {
+        "designSteelsCount": 2,
+        "moduleSteelsCount": 2,
+        "constraints": {
+          "wasteThreshold": 600,
+          "targetLossRate": 5,
+          "timeLimit": 300000,
+          "maxWeldingSegments": 1
+        }
+      },
+      "createdAt": "2025-08-17T06:30:15.334Z",
+      "updatedAt": "2025-08-17T06:30:15.461Z",
+      "errorDetails": {
+        "message": "SteelOptimizerV3 is not a constructor",
+        "stack": "TypeError: SteelOptimizerV3 is not a constructor\n    at Timeout._onTimeout (C:\\fix\\netlify\\functions\\optimize.js:106:27)",
+        "timestamp": "2025-08-17T06:30:15.461Z"
+      }
+    },
+    {
+      "id": "task_1755412262403_6abl4ve0t",
+      "status": "completed",
+      "progress": 100,
+      "message": "优化完成",
+      "results": "{\"success\":true,\"result\":{\"solutions\":{\"未知规格_100\":{\"cuttingPlans\":[{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M1\",\"sourceDescription\":\"未知规格_100组合module 未知规格_100_M1\",\"sourceLength\":12000,\"moduleType\":\"未知规格-12000mm模数钢材\",\"moduleLength\":12000,\"cuts\":[{\"length\":6000,\"quantity\":2}],\"newRemainders\":[],\"pseudoRemainders\":[],\"realRemainders\":[],\"waste\":0,\"usedRemainders\":[]},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M2\",\"sourceDescription\":\"未知规格_100组合module 未知规格_100_M2\",\"sourceLength\":12000,\"moduleType\":\"未知规格-12000mm模数钢材\",\"moduleLength\":12000,\"cuts\":[{\"length\":6000,\"quantity\":2}],\"newRemainders\":[],\"pseudoRemainders\":[],\"realRemainders\":[],\"waste\":0,\"usedRemainders\":[]},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M3\",\"sourceDescription\":\"未知规格_100组合module 未知规格_100_M3\",\"sourceLength\":12000,\"moduleType\":\"未知规格-12000mm模数钢材\",\"moduleLength\":12000,\"cuts\":[{\"length\":6000,\"quantity\":2}],\"newRemainders\":[],\"pseudoRemainders\":[],\"realRemainders\":[],\"waste\":0,\"usedRemainders\":[]},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M4\",\"sourceDescription\":\"未知规格_100组合module 未知规格_100_M4\",\"sourceLength\":12000,\"moduleType\":\"未知规格-12000mm模数钢材\",\"moduleLength\":12000,\"cuts\":[{\"length\":6000,\"quantity\":2}],\"newRemainders\":[],\"pseudoRemainders\":[],\"realRemainders\":[],\"waste\":0,\"usedRemainders\":[]},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M5\",\"sourceDescription\":\"未知规格_100组合module 未知规格_100_M5\",\"sourceLength\":12000,\"moduleType\":\"未知规格-12000mm模数钢材\",\"moduleLength\":12000,\"cuts\":[{\"length\":6000,\"quantity\":2}],\"newRemainders\":[],\"pseudoRemainders\":[],\"realRemainders\":[],\"waste\":0,\"usedRemainders\":[]}],\"totalModuleUsed\":0,\"totalWaste\":0,\"totalPseudoRemainder\":0,\"totalRealRemainder\":0,\"details\":[{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M1\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M1\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M2\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M2\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M3\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M3\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M4\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M4\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M5\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1},{\"sourceType\":\"module\",\"sourceId\":\"未知规格_100_M5\",\"sourceLength\":12000,\"moduleType\":\"\",\"moduleLength\":0,\"length\":6000,\"quantity\":1,\"remainderInfo\":null,\"weldingCount\":1}],\"lossRateBreakdown\":{},\"taskStats\":{\"totalCuts\":5,\"totalModuleSteelsUsed\":5,\"totalModuleLength\":60000,\"totalWasteGenerated\":0,\"totalRemaindersReused\":0,\"totalWeldingOperations\":0},\"totalMaterial\":60000,\"lossRate\":0}},\"totalLossRate\":0,\"totalModuleUsed\":5,\"totalWaste\":0,\"totalPseudoRemainder\":0,\"totalRealRemainder\":0,\"totalMaterial\":60000,\"executionTime\":10,\"lossRateValidation\":{\"isValid\":true,\"totalLossRate\":0,\"weightedAverage\":0,\"difference\":0,\"specResults\":[{\"lossRate\":0,\"weight\":60000,\"contribution\":0}],\"errorMessage\":null},\"constraintValidation\":{\"isValid\":true,\"violations\":[],\"suggestions\":[],\"warnings\":[{\"type\":\"constraintEfficiency\",\"level\":\"info\",\"message\":\"W=1且有多种模数钢材，系统将自动选择最优规格\",\"suggestion\":\"考虑增加W值以获得更灵活的优化结果\"}]},\"moduleSteelUsage\":{\"未知规格\":{\"12000\":5}},\"databaseRecords\":[{\"id\":\"未知规格_100_M1\",\"specification\":\"未知规格\",\"crossSection\":100,\"length\":12000,\"usedAt\":\"2025-08-17T06:31:02.517Z\"},{\"id\":\"未知规格_100_M2\",\"specification\":\"未知规格\",\"crossSection\":100,\"length\":12000,\"usedAt\":\"2025-08-17T06:31:02.518Z\"},{\"id\":\"未知规格_100_M3\",\"specification\":\"未知规格\",\"crossSection\":100,\"length\":12000,\"usedAt\":\"2025-08-17T06:31:02.518Z\"},{\"id\":\"未知规格_100_M4\",\"specification\":\"未知规格\",\"crossSection\":100,\"length\":12000,\"usedAt\":\"2025-08-17T06:31:02.519Z\"},{\"id\":\"未知规格_100_M5\",\"specification\":\"未知规格\",\"crossSection\":100,\"length\":12000,\"usedAt\":\"2025-08-17T06:31:02.519Z\"}]},\"stats\":{\"totalCuts\":0,\"remaindersGenerated\":0,\"remaindersReused\":0,\"weldingOperations\":0}}",
+      "error": null,
+      "executionTime": 126,
+      "startTime": "2025-08-17T06:31:02.403Z",
+      "endTime": "2025-08-17T06:31:02.529Z",
+      "inputData": {
+        "designSteelsCount": 2,
+        "moduleSteelsCount": 2,
+        "constraints": {
+          "wasteThreshold": 600,
+          "targetLossRate": 5,
+          "timeLimit": 300000,
+          "maxWeldingSegments": 1
+        }
+      },
+      "createdAt": "2025-08-17T06:31:02.403Z",
+      "updatedAt": "2025-08-17T06:31:02.529Z"
     }
   ],
   "systemStats": {

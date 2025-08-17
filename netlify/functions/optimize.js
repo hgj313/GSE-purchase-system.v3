@@ -1,6 +1,6 @@
-const { SteelOptimizerV3 } = require('../../core/optimizer/SteelOptimizerV3');
-const { ConstraintValidator } = require('../../core/constraints/ConstraintValidator');
-const { DatabaseManager } = require('../../server/database/Database');
+const SteelOptimizerV3 = require('../../core/optimizer/SteelOptimizerV3');
+const ConstraintValidator = require('../../core/constraints/ConstraintValidator');
+const DatabaseManager = require('../../server/database/Database');
 
 exports.handler = async (event, context) => {
   // 设置CORS头
@@ -61,7 +61,7 @@ exports.handler = async (event, context) => {
     }
 
     // 创建数据库管理器
-    const db = new DatabaseManager();
+    const db = DatabaseManager;
     const dbInitialized = await db.init();
     if (!dbInitialized) {
       console.error('❌ 数据库初始化失败');

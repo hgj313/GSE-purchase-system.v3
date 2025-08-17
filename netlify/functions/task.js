@@ -1,4 +1,4 @@
-const { DatabaseManager } = require('../../server/database/Database');
+const DatabaseManager = require('../../server/database/Database');
 
 exports.handler = async (event, context) => {
   const headers = {
@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
   }
 
   // 创建数据库管理器
-  const db = new DatabaseManager();
+  const db = DatabaseManager;
   await db.init();
 
   try {
