@@ -7,7 +7,7 @@
     "start-server": "cross-env PORT=5002 node server/stable.js",
     "start-client": "cd client && npm start",
     "install-all": "npm install && cd client && npm install",
-    "build:netlify": "cd client && npm install && npm run build",
+    "build:netlify": "npm ci && npm ci --prefix client && npm run build --prefix client",
     "dev": "npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "performance-check": "node scripts/netlify-performance-check.js",
@@ -15,7 +15,8 @@
     "prepare-deployment": "node scripts/prepare-deployment.js",
     "quick-check": "node scripts/quick-check.js",
     "clean": "node -e \"const fs = require('fs'); const path = require('path'); function rmdir(dir) { try { if (fs.existsSync(dir)) { fs.rmSync(dir, { recursive: true, force: true }); console.log('Cleaned:', dir); } } catch (e) { console.log('Skip:', dir, e.message); } } rmdir('client/build'); rmdir('client/node_modules/.cache');\"",
-    "analyze": "cd client && npm run analyze"
+    "analyze": "cd client && npm run analyze",
+    "netlify-build": "npm ci && npm ci --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

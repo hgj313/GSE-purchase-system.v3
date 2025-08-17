@@ -1,11 +1,15 @@
 [build]
-  command = "npm run build"
+  command = "npm ci && npm ci --prefix client && npm run build --prefix client"
   publish = "client/build"
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
+  REACT_APP_API_URL = "/.netlify/functions"
+  GENERATE_SOURCEMAP = "false"
+  SKIP_PREFLIGHT_CHECK = "true"
+  CI = "false"
 
 [[redirects]]
   from = "/api/*"
