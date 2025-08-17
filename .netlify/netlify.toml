@@ -1,0 +1,75 @@
+functionsDirectory = "C:\\fix\\netlify\\functions"
+functionsDirectoryOrigin = "config-v1"
+headersOrigin = "config"
+redirectsOrigin = "config"
+plugins = []
+
+[build]
+publish = "C:\\fix\\client\\build"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm ci && npm ci --prefix client && npm run build --prefix client"
+functions = "C:\\fix\\netlify\\functions"
+
+[build.environment]
+NODE_VERSION = "18"
+NPM_VERSION = "9"
+REACT_APP_API_URL = "/.netlify/functions"
+GENERATE_SOURCEMAP = "false"
+SKIP_PREFLIGHT_CHECK = "true"
+CI = "false"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[dev]
+command = "npm run dev"
+port = 3000.0
+publish = "client/build"
+
+[functions]
+
+[functions."*"]
+node_bundler = "esbuild"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

@@ -94,7 +94,38 @@ React 18 + TypeScript
 - **内存**: 建议 4GB+
 - **存储**: 建议 2GB+ 可用空间
 
-### 安装部署
+### 🌐 GitHub到Netlify一键部署
+
+#### 方案1：GitHub直接部署（推荐）
+1. **Fork本项目**到你的GitHub账户
+2. **登录Netlify**：https://netlify.com
+3. **点击"New site from Git"**
+4. **选择GitHub**并连接你的仓库
+5. **自动识别配置**：系统会自动识别`netlify.toml`
+6. **点击"Deploy site"**开始部署
+7. **获取URL**：部署完成后获得`https://[your-site].netlify.app`
+
+#### 方案2：手动上传部署
+1. **构建项目**：
+   ```bash
+   npm run build:netlify
+   ```
+2. **登录Netlify**：拖拽`build`文件夹到Netlify控制台
+3. **自动部署**：系统自动完成剩余步骤
+
+#### 方案3：本地验证后部署
+```bash
+# 1. 验证部署配置
+node verify-github-netlify-deployment.js
+
+# 2. 构建生产版本
+npm run build:netlify
+
+# 3. 部署到Netlify
+npx netlify-cli deploy --prod
+```
+
+### 本地开发环境
 
 #### 1. 克隆项目
 ```bash
@@ -121,13 +152,10 @@ npm run server  # 后端服务 (http://localhost:3001)
 npm run client  # 前端应用 (http://localhost:3000)
 ```
 
-#### 4. 生产部署
+#### 4. 本地Netlify函数测试
 ```bash
-# 构建生产版本
-npm run build
-
-# Netlify部署
-npm run dev
+# 启动Netlify本地开发环境
+npm run netlify-dev
 ```
 
 ### 🖥️ 访问地址
@@ -440,4 +468,4 @@ npm start
 
 ---
 
-*Built with ❤️ by HGJ技术团队* 
+*Built with ❤️ by HGJ技术团队*

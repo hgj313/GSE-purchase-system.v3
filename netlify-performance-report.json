@@ -1,85 +1,85 @@
 {
   "summary": {
     "totalTests": 8,
-    "successfulTests": 2,
-    "failedTests": 6,
-    "successRate": 25,
-    "averageResponseTime": 13,
-    "totalDuration": 6087
+    "successfulTests": 0,
+    "failedTests": 8,
+    "successRate": 0,
+    "averageResponseTime": 0,
+    "totalDuration": 8540
   },
   "details": [
     {
       "name": "Frontend",
-      "url": "http://localhost:3000",
-      "status": 200,
-      "duration": 23,
-      "success": true,
-      "size": "588",
-      "timestamp": "2025-08-14T02:41:18.082Z"
+      "url": "https://deluxe-heliotrope-cc6c08.netlify.app",
+      "status": "ERROR",
+      "duration": 342,
+      "success": false,
+      "error": "network timeout at: https://deluxe-heliotrope-cc6c08.netlify.app/",
+      "timestamp": "2025-08-17T07:17:11.578Z"
     },
     {
       "name": "Health Check",
-      "url": "http://localhost:3000/.netlify/functions/health",
-      "status": 404,
-      "duration": 4,
+      "url": "https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/health",
+      "status": "ERROR",
+      "duration": 311,
       "success": false,
-      "size": "78",
-      "timestamp": "2025-08-14T02:41:19.094Z"
+      "error": "network timeout at: https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/health",
+      "timestamp": "2025-08-17T07:17:12.893Z"
     },
     {
       "name": "Stats API",
-      "url": "http://localhost:3000/.netlify/functions/stats",
-      "status": 404,
-      "duration": 5,
+      "url": "https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/stats",
+      "status": "ERROR",
+      "duration": 312,
       "success": false,
-      "size": "77",
-      "timestamp": "2025-08-14T02:41:20.104Z"
+      "error": "network timeout at: https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/stats",
+      "timestamp": "2025-08-17T07:17:14.209Z"
     },
     {
       "name": "Validation API",
-      "url": "http://localhost:3000/.netlify/functions/validate-constraints",
-      "status": 404,
-      "duration": 4,
+      "url": "https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/validate-constraints",
+      "status": "ERROR",
+      "duration": 308,
       "success": false,
-      "size": "93",
-      "timestamp": "2025-08-14T02:41:21.113Z"
+      "error": "network timeout at: https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/validate-constraints",
+      "timestamp": "2025-08-17T07:17:15.522Z"
     },
     {
       "name": "Optimization API",
-      "url": "http://localhost:3000/.netlify/functions/optimize",
-      "status": 404,
-      "duration": 4,
+      "url": "https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/optimize",
+      "status": "ERROR",
+      "duration": 310,
       "success": false,
-      "size": "81",
-      "timestamp": "2025-08-14T02:41:22.125Z"
+      "error": "network timeout at: https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/optimize",
+      "timestamp": "2025-08-17T07:17:16.837Z"
     },
     {
       "name": "Health Check",
-      "url": "http://localhost:3000/.netlify/functions/health",
-      "status": 404,
-      "duration": 4,
+      "url": "https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/health",
+      "status": "ERROR",
+      "duration": 310,
       "success": false,
-      "size": "78",
-      "timestamp": "2025-08-14T02:41:23.134Z"
+      "error": "network timeout at: https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/health",
+      "timestamp": "2025-08-17T07:17:18.152Z"
     },
     {
       "name": "Stats API",
-      "url": "http://localhost:3000/.netlify/functions/stats",
-      "status": 404,
-      "duration": 4,
+      "url": "https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/stats",
+      "status": "ERROR",
+      "duration": 309,
       "success": false,
-      "size": "77",
-      "timestamp": "2025-08-14T02:41:23.138Z"
+      "error": "network timeout at: https://deluxe-heliotrope-cc6c08.netlify.app/.netlify/functions/stats",
+      "timestamp": "2025-08-17T07:17:18.461Z"
     },
     {
       "name": "Frontend",
-      "url": "http://localhost:3000",
-      "status": 200,
-      "duration": 2,
-      "success": true,
-      "size": "588",
-      "timestamp": "2025-08-14T02:41:23.140Z"
+      "url": "https://deluxe-heliotrope-cc6c08.netlify.app",
+      "status": "ERROR",
+      "duration": 308,
+      "success": false,
+      "error": "network timeout at: https://deluxe-heliotrope-cc6c08.netlify.app/",
+      "timestamp": "2025-08-17T07:17:18.769Z"
     }
   ],
-  "timestamp": "2025-08-14T02:41:24.146Z"
+  "timestamp": "2025-08-17T07:17:19.776Z"
 }

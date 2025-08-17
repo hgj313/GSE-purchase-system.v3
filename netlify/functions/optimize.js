@@ -1,6 +1,6 @@
 const SteelOptimizerV3 = require('../../core/optimizer/SteelOptimizerV3');
 const ConstraintValidator = require('../../core/constraints/ConstraintValidator');
-const DatabaseManager = require('../../server/database/Database');
+const db = require('./utils/netlifyDatabase');
 
 exports.handler = async (event, context) => {
   // 设置CORS头
@@ -60,18 +60,18 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // 创建数据库管理器
-    const db = DatabaseManager;
+    // 创建Netlify云端数据库管理器
+    const db = require('./utils/netlifyDatabase');
     const dbInitialized = await db.init();
     if (!dbInitialized) {
-      console.error('❌ 数据库初始化失败');
+      console.error('❌ 云端数据库初始化失败');
       return {
         statusCode: 500,
         headers,
         body: JSON.stringify({
           success: false,
-          error: 'Database initialization failed',
-          message: '无法连接到数据库，请稍后再试'
+          error: 'Cloud database initialization failed',
+          message: '云端数据库初始化失败，请稍后再试'
         })
       };
     }
