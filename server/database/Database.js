@@ -476,13 +476,20 @@ class DatabaseManager {
    */
   async setTaskResults(taskId, results) {
     try {
+      // 确保results是可序列化的对象
+      let resultsToSave = results;
+      if (typeof results !== 'object' || results === null) {
+        resultsToSave = { value: results };
+      }
+      
       return await this.updateTaskStatus(taskId, 'completed', {
-        results: JSON.stringify(results),
+        results: JSON.stringify(resultsToSave),
         progress: 100,
-        message: '优化完成'
+        message: resultsToSave.success ? '优化完成' : '优化完成但有警告'
       });
     } catch (error) {
       console.error('设置任务结果失败:', error);
+      console.error('失败的结果数据类型:', typeof results);
       return false;
     }
   }
@@ -492,12 +499,44 @@ class DatabaseManager {
    */
   async setTaskError(taskId, error) {
     try {
+      // 灵活处理不同格式的错误信息
+      let errorMessage = '未知错误';
+      let errorDetails = null;
+      
+      if (error && typeof error === 'object') {
+        errorMessage = error.message || '未知错误';
+        
+        // 尝试保留更详细的错误信息
+        errorDetails = {
+          message: error.message,
+          stack: error.stack,
+          timestamp: error.timestamp || new Date().toISOString(),
+          // 保留其他可能的错误属性
+          ...Object.fromEntries(
+            Object.entries(error)
+              .filter(([key]) => !['message', 'stack', 'timestamp'].includes(key))
+          )
+        };
+      } else {
+        errorMessage = String(error);
+      }
+      
       return await this.updateTaskStatus(taskId, 'failed', {
-        error: error.message || String(error),
-        message: `优化失败: ${error.message || String(error)}`
+        error: errorMessage,
+        errorDetails: errorDetails,
+        message: `优化失败: ${errorMessage}`
       });
-    } catch (error) {
-      console.error('设置任务错误失败:', error);
+    } catch (dbError) {
+      console.error('设置任务错误失败:', dbError);
+      // 即使记录错误失败，也要确保任务状态更新
+      try {
+        await this.updateTaskStatus(taskId, 'failed', {
+          error: '记录详细错误失败',
+          message: '优化失败且无法记录详细错误'
+        });
+      } catch (finalError) {
+        console.error('最后尝试更新任务状态也失败:', finalError);
+      }
       return false;
     }
   }
@@ -597,4 +636,4 @@ class DatabaseManager {
 // 创建单例实例
 const databaseManager = new DatabaseManager();
 
-module.exports = databaseManager; 
+module.exports = databaseManager;

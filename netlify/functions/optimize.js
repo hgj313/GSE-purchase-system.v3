@@ -62,7 +62,19 @@ exports.handler = async (event, context) => {
 
     // 创建数据库管理器
     const db = new DatabaseManager();
-    await db.init();
+    const dbInitialized = await db.init();
+    if (!dbInitialized) {
+      console.error('❌ 数据库初始化失败');
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          success: false,
+          error: 'Database initialization failed',
+          message: '无法连接到数据库，请稍后再试'
+        })
+      };
+    }
 
     // 创建优化任务
     const taskId = await db.createOptimizationTask({
@@ -76,24 +88,49 @@ exports.handler = async (event, context) => {
     // 异步执行优化任务，不阻塞返回
     setTimeout(async () => {
       try {
+        console.log(`🚀 开始异步执行优化任务: ${taskId}`);
+        
         // 更新任务状态为运行中
-        await db.updateTaskProgress(taskId, 20, '正在执行优化...');
-        await db.updateTaskStatus(taskId, 'running');
+        const progressUpdated = await db.updateTaskProgress(taskId, 20, '正在执行优化...');
+        if (!progressUpdated) {
+          console.error(`❌ 无法更新任务进度: ${taskId}`);
+        }
+        
+        const statusUpdated = await db.updateTaskStatus(taskId, 'running');
+        if (!statusUpdated) {
+          console.error(`❌ 无法更新任务状态: ${taskId}`);
+        }
 
         // 执行优化
+        console.log(`🔍 开始执行优化算法: ${taskId}`);
         const optimizer = new SteelOptimizerV3(designSteels, moduleSteels, constraints);
         const optimizationResult = await optimizer.optimize();
         
+        console.log(`📊 优化结果: ${taskId}, success: ${optimizationResult.success}`);
+        
         // 设置任务结果
-        await db.setTaskResults(taskId, optimizationResult);
-
-        console.log(`✅ 优化完成: ${taskId}`);
+        const resultsSet = await db.setTaskResults(taskId, optimizationResult);
+        if (resultsSet) {
+          console.log(`✅ 优化完成并保存结果: ${taskId}`);
+        } else {
+          console.error(`❌ 无法保存优化结果: ${taskId}`);
+        }
 
       } catch (error) {
-        console.error('❌ 优化任务失败:', error);
+        console.error('❌ 优化任务执行异常:', error);
+        console.error('❌ 错误堆栈:', error.stack);
         
-        // 设置任务错误
-        await db.setTaskError(taskId, error);
+        // 设置任务错误 - 添加重试逻辑
+        try {
+          await db.setTaskError(taskId, {
+            message: error.message || '优化过程中发生未知错误',
+            stack: error.stack || '',
+            timestamp: new Date().toISOString()
+          });
+          console.log(`📝 已记录任务错误: ${taskId}`);
+        } catch (dbError) {
+          console.error('❌ 无法记录任务错误:', dbError);
+        }
       }
     }, 100);
 
