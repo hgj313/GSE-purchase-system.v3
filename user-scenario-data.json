@@ -1,0 +1,123 @@
+{
+  "solutions": {
+    "320*320*12-12000mm模数钢材": {
+      "cuttingPlans": [
+        {
+          "sourceType": "module",
+          "moduleType": "320*320*12-12000mm模数钢材",
+          "moduleLength": 12000,
+          "cuts": [
+            {
+              "length": 3000,
+              "quantity": 4
+            },
+            {
+              "length": 2000,
+              "quantity": 3
+            }
+          ],
+          "waste": 600,
+          "newRemainders": [
+            {
+              "length": 400
+            }
+          ]
+        }
+      ]
+    },
+    "[150*5-12000mm模数钢材": {
+      "cuttingPlans": [
+        {
+          "sourceType": "module",
+          "moduleType": "[150*5-12000mm模数钢材",
+          "moduleLength": 12000,
+          "cuts": [
+            {
+              "length": 2500,
+              "quantity": 4
+            },
+            {
+              "length": 1800,
+              "quantity": 2
+            }
+          ],
+          "waste": 400,
+          "newRemainders": [
+            {
+              "length": 600
+            }
+          ]
+        }
+      ]
+    },
+    "200*150*8-12000mm模数钢材": {
+      "cuttingPlans": [
+        {
+          "sourceType": "module",
+          "moduleType": "200*150*8-12000mm模数钢材",
+          "moduleLength": 12000,
+          "cuts": [
+            {
+              "length": 2400,
+              "quantity": 5
+            }
+          ],
+          "waste": 0,
+          "newRemainders": [
+            {
+              "length": 0
+            }
+          ]
+        }
+      ]
+    },
+    "350*250*10-12000mm模数钢材": {
+      "cuttingPlans": [
+        {
+          "sourceType": "module",
+          "moduleType": "350*250*10-12000mm模数钢材",
+          "moduleLength": 12000,
+          "cuts": [
+            {
+              "length": 2200,
+              "quantity": 5
+            },
+            {
+              "length": 1000,
+              "quantity": 1
+            }
+          ],
+          "waste": 800,
+          "newRemainders": [
+            {
+              "length": 0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "specificationStats": {
+    "320*320*12-12000mm模数钢材": {
+      "lossRate": 5,
+      "utilization": 95,
+      "totalMaterial": 144000
+    },
+    "[150*5-12000mm模数钢材": {
+      "lossRate": 3.3,
+      "utilization": 96.7,
+      "totalMaterial": 120000
+    },
+    "200*150*8-12000mm模数钢材": {
+      "lossRate": 0,
+      "utilization": 100,
+      "totalMaterial": 84000
+    },
+    "350*250*10-12000mm模数钢材": {
+      "lossRate": 6.7,
+      "utilization": 93.3,
+      "totalMaterial": 132000
+    }
+  },
+  "totalLossRate": 3.4475
+}

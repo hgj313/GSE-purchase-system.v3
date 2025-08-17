@@ -1,107 +1,86 @@
-/**
- * Netlify Function - 钢材优化算法 (异步模式) - 最终稳健版
- */
-const TaskManager = require('./utils/TaskManager');
-const fetch = require('node-fetch');
-
-const taskManager = new TaskManager();
+const { SteelOptimizerV3 } = require('../../core/optimizer/SteelOptimizerV3');
+const { ConstraintValidator } = require('../../core/constraints/ConstraintValidator');
+const { Database } = require('../../server/database/Database');
 
 exports.handler = async (event, context) => {
-  // 任务ID生成 - 移至函数入口确保所有请求都能生成taskId
-  let uuidv4;
-  try {
-    const uuidModule = require('uuid');
-    uuidv4 = uuidModule.v4;
-  } catch (e) {
-    console.warn('⚠️ uuid模块未找到，使用备用ID生成方案');
-    uuidv4 = () => `fallback_${Date.now()}_${Math.floor(Math.random() * 1000000)}`;
-  }
-  const taskId = uuidv4();
-  console.log(`[${taskId}] 🆔 生成任务ID`);
+  // 设置CORS头
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Content-Type': 'application/json'
+  };
 
   if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
+  if (event.httpMethod !== 'POST') {
     return {
-      statusCode: 200,
-      headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS' },
-      body: JSON.stringify({ taskId: taskId })
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({ error: 'Method not allowed' })
     };
   }
 
   try {
-    if (event.httpMethod !== 'POST') {
-      return { statusCode: 405, body: JSON.stringify({ success: false, error: '仅支持POST请求', taskId: taskId }) };
-    }
+    const data = JSON.parse(event.body);
+    const { designSteels, constraints, options = {} } = data;
 
-    let requestData;
-    try {
-      requestData = JSON.parse(event.body);
-      console.log(`[${taskId}] 🚀 收到优化请求`);
-    } catch (parseError) {
-      console.error(`[${taskId}] ❌ JSON解析错误:`, parseError.message);
-      await taskManager.createPendingTask({}, taskId);
-      await taskManager.setTaskError(taskId, `请求格式错误: ${parseError.message}`);
+    if (!designSteels || !Array.isArray(designSteels)) {
       return {
         statusCode: 400,
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ success: false, error: `请求格式错误: ${parseError.message}`, taskId: taskId })
+        headers,
+        body: JSON.stringify({ error: 'Invalid design steels data' })
       };
     }
 
-    await taskManager.createPendingTask(requestData, taskId);
+    // 验证约束条件
+    const validator = new ConstraintValidator();
+    const validationResult = validator.validateConstraints(constraints);
     
-    // 关键修复：不再依赖不稳定的event.headers.host，
-    // 改用Netlify在构建和运行时提供的、更可靠的process.env.URL
-    const siteUrl = process.env.URL || `https://${event.headers.host}`;
-    if (!process.env.URL) {
-      console.warn(`[${taskId}] 警告：环境变量 process.env.URL 未设置，降级使用 event.headers.host。这在本地开发时正常，但在生产环境可能导致调用失败。`);
+    if (!validationResult.isValid) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Invalid constraints', 
+          details: validationResult.errors 
+        })
+      };
     }
-    
-    const invokeUrl = `${siteUrl}/.netlify/functions/optimization-worker-background`;
-    console.log(`[${taskId}] 准备调用后台工作者: ${invokeUrl}`);
-    console.log(`[${taskId}] 请求头信息:`, JSON.stringify(event.headers, null, 2));
-    
-    // 异步调用后台函数，但不等待其完成，这才是真正的“触发”
-    console.log(`[${taskId}] 📡 开始发送fetch请求...`);
-    
-    try {
-      const fetchResponse = await fetch(invokeUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ taskId, optimizationData: requestData })
-      });
-      
-      console.log(`[${taskId}] 📥 收到fetch响应，状态码: ${fetchResponse.status}`);
-      
-      if (fetchResponse.ok) {
-        const responseBody = await fetchResponse.text();
-        console.log(`[${taskId}] ✅ 成功调用后台工作者，响应内容: ${responseBody}`);
-      } else {
-        const errorBody = await fetchResponse.text();
-        console.error(`[${taskId}] ❌ 调用后台工作者失败，状态码: ${fetchResponse.status}`);
-        console.error(`[${taskId}] 错误详情: ${errorBody}`);
-        // 标记任务为失败
-        await taskManager.setTaskError(taskId, `后台工作者启动失败: ${fetchResponse.status} - ${errorBody}`);
-      }
-    } catch (err) {
-      console.error(`[${taskId}] ❌ 调用后台工作者时发生网络错误:`, err.message, err.stack);
-      // 标记任务为失败
-      await taskManager.setTaskError(taskId, `后台工作者启动网络错误: ${err.message}`);
-    }
-    
-    console.log(`[${taskId}] 📤 fetch请求处理完成`);
 
-    // 返回202 Accepted，表示请求已接受
+    // 执行优化
+    const optimizer = new SteelOptimizerV3();
+    const result = await optimizer.optimize(designSteels, constraints, options);
+
+    // 保存优化历史
+    try {
+      const db = new Database();
+      await db.query(`
+        INSERT INTO optimization_history (design_data, constraints, result, created_at)
+        VALUES (?, ?, ?, datetime('now'))
+      `, [JSON.stringify(designSteels), JSON.stringify(constraints), JSON.stringify(result)]);
+    } catch (dbError) {
+      console.warn('Failed to save optimization history:', dbError);
+    }
+
     return {
-      statusCode: 202,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ success: true, taskId, message: '优化任务已创建' })
+      statusCode: 200,
+      headers,
+      body: JSON.stringify(result)
     };
+
   } catch (error) {
-    console.error('❌ 优化API主流程错误:', error);
+    console.error('Optimization error:', error);
+    
     return {
       statusCode: 500,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ success: false, error: `服务器内部错误: ${error.message}`, taskId: taskId })
+      headers,
+      body: JSON.stringify({
+        error: 'Optimization failed',
+        message: error.message
+      })
     };
   }
 };

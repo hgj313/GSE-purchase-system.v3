@@ -1,0 +1,32 @@
+[
+  {
+    "route": "/api/health",
+    "method": "get",
+    "status": 200,
+    "success": true
+  },
+  {
+    "route": "/api/optimize",
+    "method": "post",
+    "status": 400,
+    "success": false
+  },
+  {
+    "route": "/api/export/excel",
+    "method": "post",
+    "status": 400,
+    "success": false
+  },
+  {
+    "route": "/api/validate-constraints",
+    "method": "post",
+    "status": 200,
+    "success": true
+  },
+  {
+    "route": "/api/stats",
+    "method": "get",
+    "status": 200,
+    "success": true
+  }
+]

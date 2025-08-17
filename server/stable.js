@@ -607,40 +607,7 @@ app.post('/api/upload-design-steels', async (req, res) => {
   }
 });
 
-/**
- * 导出Excel报告
- */
-app.post('/api/export/excel', async (req, res) => {
-  try {
-    const { optimizationResult, exportOptions = {} } = req.body;
-    
-    if (!optimizationResult) {
-      return res.status(400).json({
-        success: false,
-        error: '缺少优化结果数据'
-      });
-    }
 
-    console.log('📊 开始生成Excel报告...');
-    const excelBuffer = await generateExcelReport(optimizationResult, exportOptions);
-    
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-    const filename = `钢材优化报告_${timestamp}.xlsx`;
-    
-    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', `attachment; filename="${encodeURIComponent(filename)}"`);
-    res.send(excelBuffer);
-    
-    console.log('✅ Excel报告生成成功:', filename);
-    
-  } catch (error) {
-    console.error('❌ Excel导出失败:', error);
-    res.status(500).json({
-      success: false,
-      error: `Excel导出失败: ${error.message}`
-    });
-  }
-});
 
 /**
  * 导出PDF报告
@@ -1091,7 +1058,6 @@ function generatePDFHTML(optimizationResult, exportOptions = {}) {
     <div class="summary">
       <table>
         <tr><td><strong>总损耗率</strong></td><td class="highlight">${(safeResult.totalLossRate || 0).toFixed(2)}%</td></tr>
-        <tr><td><strong>材料利用率</strong></td><td class="highlight">${safeResult.totalLossRate ? (100 - safeResult.totalLossRate).toFixed(2) : '96.55'}%</td></tr>
         <tr><td><strong>模数钢材使用量</strong></td><td>${safeResult.totalModuleUsed || 0} 根</td></tr>
         <tr><td><strong>总材料长度</strong></td><td>${(safeResult.totalMaterial || 0).toLocaleString()} mm</td></tr>
         <tr><td><strong>总废料长度</strong></td><td>${(safeResult.totalWaste || 0).toLocaleString()} mm</td></tr>
@@ -1147,8 +1113,7 @@ function generatePDFHTML(optimizationResult, exportOptions = {}) {
     <ul>
       <li><strong>优化算法</strong>：采用V3.0并行优化算法，支持余料重用和智能切割</li>
       <li><strong>损耗率计算</strong>：损耗率 = 废料长度 / 总材料长度 × 100%</li>
-      <li><strong>材料利用率</strong>：材料利用率 = 100% - 损耗率</li>
-      <li><strong>余料管理</strong>：系统自动管理余料重用，提高材料利用率</li>
+      <li><strong>余料管理</strong>：系统自动管理余料重用，减少材料浪费</li>
       <li><strong>采购优化</strong>：采购数量已考虑切割优化，每根钢材可切割多个设计件</li>
       <li><strong>质量保证</strong>：所有计算结果经过数据一致性验证</li>
     </ul>
@@ -1193,7 +1158,7 @@ async function generateExcelReport(optimizationResult, exportOptions = {}) {
   workbook.created = new Date();
   workbook.modified = new Date();
 
-  // 采购清单工作表
+  // 采购清单工作表 - 只保留这一个工作表
   const procurementSheet = workbook.addWorksheet('钢材采购清单');
   
   procurementSheet.columns = [
@@ -1202,8 +1167,6 @@ async function generateExcelReport(optimizationResult, exportOptions = {}) {
     { header: '单根长度(mm)', key: 'length', width: 15 },
     { header: '采购数量(根)', key: 'quantity', width: 15 },
     { header: '总长度(mm)', key: 'totalLength', width: 15 },
-    { header: '材料利用率', key: 'utilization', width: 15 },
-    { header: '总金额(元)', key: 'totalCost', width: 15 },
     { header: '备注', key: 'note', width: 30 }
   ];
 
@@ -1214,26 +1177,37 @@ async function generateExcelReport(optimizationResult, exportOptions = {}) {
   headerRow.alignment = { horizontal: 'center', vertical: 'middle' };
   headerRow.height = 25;
 
-  // 计算采购清单数据
+  // 简化数据处理 - 直接从specificationStats获取数据
   const moduleUsage = {};
-  if (optimizationResult.solutions) {
-    Object.values(optimizationResult.solutions).forEach(solution => {
+  const specificationStats = optimizationResult.specificationStats || {};
+  
+  // 优先使用specificationStats中的数据
+  Object.entries(specificationStats).forEach(([specKey, stats]) => {
+    if (stats.moduleLength && stats.moduleCount > 0) {
+      const moduleType = `${stats.length}mm`;
+      moduleUsage[moduleType] = {
+        length: stats.moduleLength,
+        count: stats.moduleCount,
+        utilization: stats.utilization?.toFixed(1) || (stats.lossRate ? (100 - stats.lossRate).toFixed(1) : '95.0')
+      };
+    }
+  });
+
+  // 如果没有specificationStats，从solutions中提取基础数据
+  if (Object.keys(moduleUsage).length === 0 && optimizationResult.solutions) {
+    Object.entries(optimizationResult.solutions).forEach(([groupKey, solution]) => {
       if (solution.cuttingPlans) {
         solution.cuttingPlans.forEach(plan => {
           if (plan.sourceType === 'module' && plan.moduleType) {
-            if (!moduleUsage[plan.moduleType]) {
-              moduleUsage[plan.moduleType] = {
+            const moduleType = plan.moduleType;
+            if (!moduleUsage[moduleType]) {
+              moduleUsage[moduleType] = {
                 length: plan.moduleLength || plan.sourceLength,
                 count: 0,
-                totalUsed: 0,
-                totalWaste: 0,
-                totalRemainder: 0
+                utilization: '95.0' // 简化默认值
               };
             }
-            moduleUsage[plan.moduleType].count++;
-            moduleUsage[plan.moduleType].totalUsed += (plan.cuts?.reduce((sum, cut) => sum + cut.length * cut.quantity, 0) || 0);
-            moduleUsage[plan.moduleType].totalWaste += (plan.waste || 0);
-            moduleUsage[plan.moduleType].totalRemainder += (plan.newRemainders?.reduce((sum, r) => sum + r.length, 0) || 0);
+            moduleUsage[moduleType].count++;
           }
         });
       }
@@ -1241,49 +1215,29 @@ async function generateExcelReport(optimizationResult, exportOptions = {}) {
   }
 
   // 添加采购清单数据
-  let totalCost = 0;
   let totalQuantity = 0;
   let totalMaterial = 0;
   
-  Object.keys(moduleUsage).forEach((moduleType, index) => {
-    const usage = moduleUsage[moduleType];
+  Object.entries(moduleUsage).forEach(([moduleType, usage], index) => {
     const totalLength = usage.length * usage.count;
-    const utilization = totalLength > 0 ? ((totalLength - usage.totalWaste) / totalLength * 100).toFixed(2) : '0.00';
     
-    // 估算单价（每米价格，根据规格大小）
-    const estimatedPricePerMeter = usage.length >= 12000 ? 8.5 : 
-                                   usage.length >= 9000 ? 7.8 : 
-                                   usage.length >= 6000 ? 7.2 : 6.5;
-    const itemCost = (totalLength / 1000) * estimatedPricePerMeter;
-    totalCost += itemCost;
     totalQuantity += usage.count;
     totalMaterial += totalLength;
     
-    const row = {
+    const row = procurementSheet.addRow({
       index: index + 1,
       moduleSpec: moduleType,
       length: usage.length,
       quantity: usage.count,
       totalLength: totalLength,
-      utilization: `${utilization}%`,
-      totalCost: `¥${itemCost.toFixed(2)}`,
-      note: usage.totalWaste > 0 ? 
-        `废料: ${usage.totalWaste}mm, 余料: ${usage.totalRemainder}mm` : 
-        `余料: ${usage.totalRemainder}mm`
-    };
+      note: `规格: ${moduleType}`
+    });
     
-    const dataRow = procurementSheet.addRow(row);
-    dataRow.height = 20;
-    
-    // 交替行颜色
+    row.height = 20;
     if (index % 2 === 0) {
-      dataRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF8F9FA' } };
+      row.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF8F9FA' } };
     }
-    
-    // 数据格式化
-    dataRow.getCell('totalLength').numFmt = '#,##0';
-    dataRow.getCell('length').numFmt = '#,##0';
-    dataRow.alignment = { horizontal: 'center', vertical: 'middle' };
+    row.alignment = { horizontal: 'center', vertical: 'middle' };
   });
 
   // 添加汇总行
@@ -1293,9 +1247,7 @@ async function generateExcelReport(optimizationResult, exportOptions = {}) {
     length: '',
     quantity: totalQuantity,
     totalLength: totalMaterial,
-    utilization: `${optimizationResult.totalLossRate ? (100 - optimizationResult.totalLossRate).toFixed(2) : '96.55'}%`,
-    totalCost: `¥${totalCost.toFixed(2)}`,
-    note: '总采购成本'
+    note: '总采购长度'
   });
   
   summaryRow.font = { bold: true, size: 11 };
@@ -1303,49 +1255,19 @@ async function generateExcelReport(optimizationResult, exportOptions = {}) {
   summaryRow.alignment = { horizontal: 'center', vertical: 'middle' };
   summaryRow.height = 25;
 
-  // 添加表格边框
-  const range = `A1:H${procurementSheet.rowCount}`;
-  procurementSheet.getCell(range.split(':')[0]).border = {
-    top: { style: 'thin' },
-    left: { style: 'thin' },
-    bottom: { style: 'thin' },
-    right: { style: 'thin' }
-  };
-
-  // 添加优化信息工作表
-  const infoSheet = workbook.addWorksheet('优化信息');
-  
-  infoSheet.columns = [
-    { header: '优化指标', key: 'metric', width: 20 },
-    { header: '数值', key: 'value', width: 15 },
-    { header: '单位', key: 'unit', width: 10 }
-  ];
-
-  const infoHeaderRow = infoSheet.getRow(1);
-  infoHeaderRow.font = { bold: true, size: 12, color: { argb: 'FFFFFFFF' } };
-  infoHeaderRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF70AD47' } };
-  infoHeaderRow.alignment = { horizontal: 'center', vertical: 'middle' };
-
-  const infoData = [
-    { metric: '总损耗率', value: optimizationResult.totalLossRate?.toFixed(2) || 'N/A', unit: '%' },
-    { metric: '材料利用率', value: optimizationResult.totalLossRate ? (100 - optimizationResult.totalLossRate).toFixed(2) : '96.55', unit: '%' },
-    { metric: '模数钢材用量', value: optimizationResult.totalModuleUsed || 0, unit: '根' },
-    { metric: '总材料长度', value: optimizationResult.totalMaterial || 0, unit: 'mm' },
-    { metric: '总废料长度', value: optimizationResult.totalWaste || 0, unit: 'mm' },
-    { metric: '总余料长度', value: (optimizationResult.totalRealRemainder || 0) + (optimizationResult.totalPseudoRemainder || 0), unit: 'mm' },
-    { metric: '优化执行时间', value: optimizationResult.executionTime || 0, unit: 'ms' },
-    { metric: '报告生成时间', value: new Date().toLocaleString('zh-CN'), unit: '' }
-  ];
-
-  infoData.forEach((row, index) => {
-    const dataRow = infoSheet.addRow(row);
-    if (index % 2 === 0) {
-      dataRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF8F9FA' } };
-    }
-    dataRow.alignment = { horizontal: 'center', vertical: 'middle' };
+  // 添加简单边框
+  procurementSheet.eachRow((row, rowNumber) => {
+    row.eachCell((cell) => {
+      cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' }
+      };
+    });
   });
 
-  // 生成缓冲区
+  // 直接生成缓冲区，不再创建额外的工作表
   const buffer = await workbook.xlsx.writeBuffer();
   return buffer;
 }
@@ -1365,4 +1287,68 @@ async function generateSimplePDFReport(optimizationResult, exportOptions = {}) {
   throw new Error('复杂的PDF生成功能已删除，请使用HTML生成方案');
 }
 
-module.exports = app;
+/**
+ * 导出Excel报告
+ */
+app.post('/api/export/excel', async (req, res) => {
+  try {
+    const { optimizationResult, exportOptions = {} } = req.body;
+    
+    if (!optimizationResult) {
+      return res.status(400).json({
+        success: false,
+        error: '缺少优化结果数据'
+      });
+    }
+
+    // 设置超时处理
+    req.setTimeout(60000); // 60秒超时
+    res.setTimeout(60000);
+
+    console.log('📊 开始生成Excel报告...');
+    console.log('🔍 Debug - 优化结果数据结构:', {
+      hasSolutions: !!optimizationResult.solutions,
+      hasSpecificationStats: !!optimizationResult.specificationStats,
+      solutionKeys: optimizationResult.solutions ? Object.keys(optimizationResult.solutions) : [],
+      specificationStatsKeys: optimizationResult.specificationStats ? Object.keys(optimizationResult.specificationStats) : [],
+      totalLossRate: optimizationResult.totalLossRate,
+      sampleStats: optimizationResult.specificationStats ? optimizationResult.specificationStats[Object.keys(optimizationResult.specificationStats)[0]] : null
+    });
+
+    // 使用Promise.race实现超时控制
+    const exportPromise = generateExcelReport(optimizationResult, exportOptions);
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('导出超时')), 55000); // 55秒触发超时
+    });
+
+    const excelBuffer = await Promise.race([exportPromise, timeoutPromise]);
+    
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const filename = `钢材优化报告_${timestamp}.xlsx`;
+    
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename="${encodeURIComponent(filename)}"`);
+    res.send(excelBuffer);
+    
+    console.log('✅ Excel报告生成成功:', filename);
+    
+  } catch (error) {
+    console.error('❌ Excel导出失败:', error);
+    if (error.message === '导出超时') {
+      res.status(504).json({
+        success: false,
+        error: '导出超时，请稍后重试或分批导出'
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        error: `Excel导出失败: ${error.message}`
+      });
+    }
+  }
+});
+
+module.exports = {
+  app,
+  generateExcelReport
+};

@@ -1,0 +1,26 @@
+{
+  "optimizationResult": {
+    "specificationStats": {
+      "3000": {
+        "length": 3000,
+        "moduleLength": 3000,
+        "moduleCount": 5,
+        "utilization": 95
+      },
+      "4000": {
+        "length": 4000,
+        "moduleLength": 4000,
+        "moduleCount": 3,
+        "utilization": 92
+      }
+    },
+    "totalLossRate": 5,
+    "totalModuleUsed": 8,
+    "totalMaterial": 24000,
+    "totalWaste": 1200,
+    "solutions": {}
+  },
+  "exportOptions": {
+    "format": "excel"
+  }
+}

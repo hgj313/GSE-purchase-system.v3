@@ -1,0 +1,18 @@
+{
+  "version": "3.0.0",
+  "buildTime": "2025-08-17T04:41:06.012Z",
+  "functions": [
+    "netlify\\functions\\export.js",
+    "netlify\\functions\\health.js",
+    "netlify\\functions\\history.js",
+    "netlify\\functions\\optimize.js",
+    "netlify\\functions\\stats.js",
+    "netlify\\functions\\task.js",
+    "netlify\\functions\\upload-design-steels.js",
+    "netlify\\functions\\validate-constraints.js"
+  ],
+  "client": {
+    "buildDir": "client/build",
+    "framework": "React"
+  }
+}

@@ -155,8 +155,17 @@ const ResultsPage: React.FC = () => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Excel导出失败');
+        // 修复：处理非JSON错误响应
+        let errorMessage = 'Excel导出失败';
+        try {
+          // 尝试解析JSON格式的错误
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } catch (jsonError) {
+          // 如果不是JSON格式，使用状态文本
+          errorMessage = `服务器错误: ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorMessage);
       }
 
       // 获取文件名

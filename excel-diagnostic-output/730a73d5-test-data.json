@@ -1,0 +1,89 @@
+{
+  "solutions": {
+    "320*320*12-12000mm模数钢材": {
+      "cuttingPlans": [
+        {
+          "sourceType": "module",
+          "moduleType": "320*320*12-12000mm模数钢材",
+          "moduleLength": 12000,
+          "cuts": [
+            {
+              "length": 3000,
+              "quantity": 4
+            },
+            {
+              "length": 2000,
+              "quantity": 3
+            }
+          ],
+          "waste": 600,
+          "newRemainders": [
+            {
+              "length": 400
+            }
+          ]
+        }
+      ]
+    },
+    "[150*5-12000mm模数钢材": {
+      "cuttingPlans": [
+        {
+          "sourceType": "module",
+          "moduleType": "[150*5-12000mm模数钢材",
+          "moduleLength": 12000,
+          "cuts": [
+            {
+              "length": 2500,
+              "quantity": 4
+            },
+            {
+              "length": 1800,
+              "quantity": 2
+            }
+          ],
+          "waste": 400,
+          "newRemainders": [
+            {
+              "length": 600
+            }
+          ]
+        }
+      ]
+    },
+    "HRB400_1256": {
+      "cuttingPlans": [
+        {
+          "sourceType": "module",
+          "moduleType": "HRB400_1256",
+          "moduleLength": 12000,
+          "cuts": [
+            {
+              "length": 3000,
+              "quantity": 4
+            }
+          ],
+          "waste": 0,
+          "newRemainders": []
+        }
+      ]
+    }
+  },
+  "specificationStats": {
+    "320*320*12-12000mm模数钢材": {
+      "lossRate": 5,
+      "utilization": 95,
+      "totalMaterial": 144000
+    },
+    "[150*5-12000mm模数钢材": {
+      "lossRate": 3.3,
+      "utilization": 96.7,
+      "totalMaterial": 120000
+    },
+    "HRB400_1256.00": {
+      "lossRate": 8.33,
+      "utilization": 91.7,
+      "totalMaterial": 120000
+    }
+  },
+  "totalLossRate": 4.2
+}

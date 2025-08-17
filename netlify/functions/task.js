@@ -1,60 +1,116 @@
-/**
- * Netlify Function - 获取单个任务状态
- */
-const TaskManager = require('./utils/TaskManager');
+const { Database } = require('../../server/database/Database');
 
 exports.handler = async (event, context) => {
-  // 预检请求处理
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+    'Content-Type': 'application/json'
+  };
+
   if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Allow-Methods': 'GET' },
-      body: ''
-    };
+    return { statusCode: 200, headers, body: '' };
   }
+
+  const db = new Database();
 
   try {
-    const taskId = event.path.split('/').pop();
-    if (!taskId) {
-      return { statusCode: 400, body: JSON.stringify({ success: false, error: '缺少任务ID' }) };
+    switch (event.httpMethod) {
+      case 'GET':
+        // 获取任务状态
+        const taskId = event.path.split('/').pop();
+        if (!taskId) {
+          // 获取所有活跃任务
+          const activeTasks = await db.query(`
+            SELECT * FROM optimization_tasks 
+            WHERE status IN ('pending', 'running')
+            ORDER BY created_at DESC
+          `);
+          
+          return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ tasks: activeTasks })
+          };
+        }
+
+        // 获取特定任务
+        const task = await db.query(`
+          SELECT * FROM optimization_tasks WHERE id = ?
+        `, [taskId]);
+
+        if (task.length === 0) {
+          return {
+            statusCode: 404,
+            headers,
+            body: JSON.stringify({ error: 'Task not found' })
+          };
+        }
+
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify(task[0])
+        };
+
+      case 'POST':
+        // 创建新任务
+        const data = JSON.parse(event.body);
+        const { designSteels, constraints, options } = data;
+
+        if (!designSteels || !constraints) {
+          return {
+            statusCode: 400,
+            headers,
+            body: JSON.stringify({ error: 'Missing required data' })
+          };
+        }
+
+        const newTaskId = Date.now().toString();
+        await db.query(`
+          INSERT INTO optimization_tasks (id, design_data, constraints, options, status, created_at)
+          VALUES (?, ?, ?, ?, 'pending', datetime('now'))
+        `, [newTaskId, JSON.stringify(designSteels), JSON.stringify(constraints), JSON.stringify(options)]);
+
+        return {
+          statusCode: 201,
+          headers,
+          body: JSON.stringify({ taskId: newTaskId, status: 'pending' })
+        };
+
+      case 'DELETE':
+        // 取消任务
+        const cancelTaskId = event.path.split('/').pop();
+        await db.query(`
+          UPDATE optimization_tasks 
+          SET status = 'cancelled', updated_at = datetime('now')
+          WHERE id = ? AND status IN ('pending', 'running')
+        `, [cancelTaskId]);
+
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify({ message: 'Task cancelled' })
+        };
+
+      default:
+        return {
+          statusCode: 405,
+          headers,
+          body: JSON.stringify({ error: 'Method not allowed' })
+        };
     }
-    
-    const taskManager = new TaskManager();
-    
-    // 非阻塞地触发清理任务，不影响主流程
-    taskManager.cleanupExpiredTasks().catch(err => console.error('清理过期任务时发生错误:', err));
-    
-    // 获取当前任务状态
-    const task = await taskManager.getTask(taskId);
-    
-    if (!task) {
-      return { statusCode: 404, body: JSON.stringify({ success: false, error: '任务不存在' }) };
-    }
-    
-    // 关键修复：返回一个扁平化的对象，而不是嵌套的task对象，以匹配前端的期望
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({
-        success: true,
-        id: task.id,
-        status: task.status,
-        progress: task.progress,
-        message: task.message,
-        results: task.results,
-        error: task.error,
-        executionTime: task.executionTime,
-        createdAt: task.createdAt,
-        updatedAt: task.updatedAt
-      })
-    };
 
   } catch (error) {
-    console.error('❌ 获取任务状态失败:', error);
+    console.error('Task error:', error);
+    
     return {
       statusCode: 500,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ success: false, error: `服务器内部错误: ${error.message}` })
+      headers,
+      body: JSON.stringify({
+        error: 'Task operation failed',
+        message: error.message
+      })
     };
   }
-}; 
+};

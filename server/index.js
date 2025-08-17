@@ -710,16 +710,37 @@ function parseCSVBuffer(buffer) {
 }
 
 /**
- * 导出Excel报告
+ * 导出Excel报告 - 重定向到stable.js中的实现
  */
 app.post('/api/export/excel', async (req, res) => {
   try {
-    // Excel导出功能待实现
-    res.json({
-      success: false,
-      error: 'Excel导出功能正在开发中'
-    });
+    const { optimizationResult, exportOptions = {} } = req.body;
+    
+    if (!optimizationResult) {
+      return res.status(400).json({
+        success: false,
+        error: '缺少优化结果数据'
+      });
+    }
+
+    // 从stable.js导入Excel生成功能
+    const stableModule = require('./stable.js');
+    const generateExcelReport = stableModule.generateExcelReport;
+    
+    console.log('📊 开始生成Excel报告...');
+    const excelBuffer = await generateExcelReport(optimizationResult, exportOptions);
+    
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const filename = `钢材优化报告_${timestamp}.xlsx`;
+    
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename="${encodeURIComponent(filename)}"`);
+    res.send(excelBuffer);
+    
+    console.log('✅ Excel报告生成成功:', filename);
+    
   } catch (error) {
+    console.error('❌ Excel导出失败:', error);
     res.status(500).json({
       success: false,
       error: `Excel导出失败: ${error.message}`

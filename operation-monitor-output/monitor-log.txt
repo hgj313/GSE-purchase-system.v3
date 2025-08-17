@@ -1,0 +1,408 @@
+[2025-08-14T10:31:07.149Z] 开始监控用户操作...
+[2025-08-14T10:31:07.330Z] 浏览器启动成功
+[2025-08-14T10:31:07.468Z] 页面创建成功
+[2025-08-14T10:31:08.164Z] 控制台日志: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2025-08-14T10:31:08.197Z] 已导航到http://localhost:3000
+[2025-08-14T10:31:08.332Z] 控制台日志: Warning: [antd: Dropdown] `overlay` is deprecated. Please use `menu` instead.
+[2025-08-14T10:31:08.364Z] 控制台日志: ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+[2025-08-14T10:31:08.365Z] 控制台日志: ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+[2025-08-14T10:31:08.529Z] 页面加载完成，请进行您的操作
+[2025-08-14T10:31:08.542Z] 监控过程中出错: browser.waitForEvent is not a function
+[2025-08-14T10:31:09.930Z] 控制台日志: Warning: [antd: Card] `bordered` is deprecated. Please use `variant` instead.
+[2025-08-14T10:31:13.798Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 0, 分组数: 0, 分组详情: Array(0), 前5个示例: Array(0)}
+[2025-08-14T10:31:13.799Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 0, 分组数: 0, 分组详情: Array(0), 前5个示例: Array(0)}
+[2025-08-14T10:31:13.817Z] 控制台日志: Warning: [rc-collapse] `children` will be removed in next major version. Please use `items` instead.
+[2025-08-14T10:31:26.306Z] 控制台日志: === 设计钢材文件上传开始 ===
+[2025-08-14T10:31:26.309Z] 控制台日志: 文件信息: {name: 西耳墙.xls, size: 30208, type: application/vnd.ms-excel}
+[2025-08-14T10:31:26.341Z] 捕获API请求: POST http://localhost:3000/api/upload-design-steels
+[2025-08-14T10:31:26.391Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:31:26.392Z] 控制台日志: Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead.
+[2025-08-14T10:31:26.397Z] 控制台日志: === 解析统计信息 ===
+[2025-08-14T10:31:26.399Z] 控制台日志: 原始行数: 85
+[2025-08-14T10:31:26.400Z] 控制台日志: 有效数据: 85
+[2025-08-14T10:31:26.402Z] 控制台日志: 跳过行数: undefined
+[2025-08-14T10:31:26.403Z] 控制台日志: 字段识别数: undefined
+[2025-08-14T10:31:26.404Z] 控制台日志: 版本信息: V3增强版 - 整合V2所有优点
+[2025-08-14T10:31:26.405Z] 控制台日志: === 设计钢材文件上传完成 ===
+[2025-08-14T10:31:26.408Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:31:26.409Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:31:53.041Z] 开始监控用户操作...
+[2025-08-14T10:31:53.239Z] 浏览器启动成功
+[2025-08-14T10:31:53.405Z] 页面创建成功
+[2025-08-14T10:31:54.268Z] 控制台日志: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2025-08-14T10:31:54.315Z] 已导航到http://localhost:3000
+[2025-08-14T10:31:54.463Z] 控制台日志: Warning: [antd: Dropdown] `overlay` is deprecated. Please use `menu` instead.
+[2025-08-14T10:31:54.490Z] 控制台日志: ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+[2025-08-14T10:31:54.490Z] 控制台日志: ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+[2025-08-14T10:31:54.642Z] 页面加载完成，请进行您的操作
+[2025-08-14T10:31:56.047Z] 控制台日志: Warning: [antd: Card] `bordered` is deprecated. Please use `variant` instead.
+[2025-08-14T10:31:57.785Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 0, 分组数: 0, 分组详情: Array(0), 前5个示例: Array(0)}
+[2025-08-14T10:31:57.786Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 0, 分组数: 0, 分组详情: Array(0), 前5个示例: Array(0)}
+[2025-08-14T10:31:57.803Z] 控制台日志: Warning: [rc-collapse] `children` will be removed in next major version. Please use `items` instead.
+[2025-08-14T10:32:07.061Z] 控制台日志: === 设计钢材文件上传开始 ===
+[2025-08-14T10:32:07.063Z] 控制台日志: 文件信息: {name: 西耳墙.xls, size: 30208, type: application/vnd.ms-excel}
+[2025-08-14T10:32:07.094Z] 捕获API请求: POST http://localhost:3000/api/upload-design-steels
+[2025-08-14T10:32:07.126Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:32:07.128Z] 控制台日志: Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead.
+[2025-08-14T10:32:07.130Z] 控制台日志: === 解析统计信息 ===
+[2025-08-14T10:32:07.131Z] 控制台日志: 原始行数: 85
+[2025-08-14T10:32:07.132Z] 控制台日志: 有效数据: 85
+[2025-08-14T10:32:07.133Z] 控制台日志: 跳过行数: undefined
+[2025-08-14T10:32:07.134Z] 控制台日志: 字段识别数: undefined
+[2025-08-14T10:32:07.136Z] 控制台日志: 版本信息: V3增强版 - 整合V2所有优点
+[2025-08-14T10:32:07.136Z] 控制台日志: === 设计钢材文件上传完成 ===
+[2025-08-14T10:32:07.138Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:32:07.139Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:32:18.064Z] 控制台日志: === 开始优化执行 ===
+[2025-08-14T10:32:18.065Z] 控制台日志: 🚀 开始优化，发送数据: {designSteels: Array(85), moduleSteels: Array(1), constraints: Object}
+[2025-08-14T10:32:18.101Z] 捕获API请求: POST http://localhost:3000/api/optimize
+[2025-08-14T10:32:18.376Z] 控制台日志: ✅ 优化任务已创建: task_1755167538372_zuxfkyy93
+[2025-08-14T10:32:20.386Z] 捕获API请求: GET http://localhost:3000/api/task/task_1755167538372_zuxfkyy93
+[2025-08-14T10:32:20.393Z] 控制台日志: ✅ 优化完成: {taskId: task_1755167538372_zuxfkyy93, status: completed, progress: 100, message: 优化完成, createdAt: 2025-08-14T10:32:18.372Z}
+[2025-08-14T10:32:21.853Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:32:21.854Z] 控制台日志: ⚠️ 使用兼容模式：completeStats不存在，使用原有字段
+[2025-08-14T10:32:21.855Z] 控制台日志: ⚠️ 图表数据兼容模式：completeStats.chartData不存在，使用原有计算逻辑
+[2025-08-14T10:32:21.856Z] 控制台日志: ⚠️ 需求验证兼容模式：completeStats.requirementValidation不存在，使用原有计算逻辑
+[2025-08-14T10:32:21.857Z] 控制台日志: ⚠️ 模数钢材统计兼容模式：completeStats.moduleUsageStats不存在，使用原有计算逻辑
+[2025-08-14T10:32:21.858Z] 控制台日志: 🔍 V3规格化重组: P320*320*12_14379 → 规格: P320*320*12_14379
+[2025-08-14T10:32:21.859Z] 控制台日志: 🔍 V3规格化重组: []150*5_2830 → 规格: []150*5_2830
+[2025-08-14T10:32:21.860Z] 控制台日志: 🔍 V3规格化重组: []200*150*8_5164 → 规格: []200*150*8_5164
+[2025-08-14T10:32:21.861Z] 控制台日志: 🔍 V3规格化重组: []350*250*10_11318 → 规格: []350*250*10_11318
+[2025-08-14T10:32:21.862Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:32:21.862Z] 控制台日志: ⚠️ 使用兼容模式：completeStats不存在，使用原有字段
+[2025-08-14T10:32:21.863Z] 控制台日志: ⚠️ 图表数据兼容模式：completeStats.chartData不存在，使用原有计算逻辑
+[2025-08-14T10:32:21.864Z] 控制台日志: ⚠️ 需求验证兼容模式：completeStats.requirementValidation不存在，使用原有计算逻辑
+[2025-08-14T10:32:21.865Z] 控制台日志: ⚠️ 模数钢材统计兼容模式：completeStats.moduleUsageStats不存在，使用原有计算逻辑
+[2025-08-14T10:32:21.866Z] 控制台日志: 🔍 V3规格化重组: P320*320*12_14379 → 规格: P320*320*12_14379
+[2025-08-14T10:32:21.868Z] 控制台日志: 🔍 V3规格化重组: []150*5_2830 → 规格: []150*5_2830
+[2025-08-14T10:32:21.869Z] 控制台日志: 🔍 V3规格化重组: []200*150*8_5164 → 规格: []200*150*8_5164
+[2025-08-14T10:32:21.870Z] 控制台日志: 🔍 V3规格化重组: []350*250*10_11318 → 规格: []350*250*10_11318
+[2025-08-14T10:32:21.871Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:32:21.872Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:21.873Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:32:21.874Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:32:21.876Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:32:21.877Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:32:21.877Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:21.879Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:32:21.880Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:32:21.880Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:32:21.881Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:32:21.881Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:32:21.882Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:32:21.882Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:32:21.883Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:32:21.884Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:32:21.884Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:32:21.885Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:21.885Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:32:21.893Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:32:21.894Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:32:21.895Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:32:21.895Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:21.896Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:32:21.896Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:32:21.897Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:32:21.897Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:32:21.898Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:32:21.898Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:32:21.899Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:32:21.899Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:32:21.900Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:32:21.904Z] 控制台日志: Warning: [antd: Tabs] `Tabs.TabPane` is deprecated. Please use `items` instead.
+[2025-08-14T10:32:21.906Z] 控制台日志: Warning: [antd: Card] `bodyStyle` is deprecated. Please use `styles.body` instead.
+[2025-08-14T10:32:21.907Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:32:21.908Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:21.910Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:32:21.911Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:32:21.912Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:32:21.913Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:32:21.914Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:21.915Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:32:21.916Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:32:21.917Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:32:21.918Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:32:21.919Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:32:21.919Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:32:21.920Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:32:21.921Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:32:21.922Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:32:24.179Z] 捕获API请求: POST http://localhost:3000/api/export/excel
+[2025-08-14T10:32:24.180Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:32:24.180Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:24.181Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:32:24.182Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:32:24.182Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:32:24.182Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:32:24.183Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:24.184Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:32:24.185Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:32:24.186Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:32:24.187Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:32:24.190Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:32:24.191Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:32:24.192Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:32:24.192Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:32:24.193Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:32:24.210Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:32:24.211Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:24.212Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:32:24.214Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:32:24.218Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:32:24.221Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:32:24.223Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:24.224Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:32:24.225Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:32:24.225Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:32:24.226Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:32:24.227Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:32:24.229Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:32:24.230Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:32:24.231Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:32:24.232Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:32:58.328Z] 捕获API请求: POST http://localhost:3000/api/export/excel
+[2025-08-14T10:32:58.329Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:32:58.330Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:58.331Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:32:58.331Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:32:58.332Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:32:58.333Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:32:58.334Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:58.334Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:32:58.335Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:32:58.335Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:32:58.335Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:32:58.336Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:32:58.336Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:32:58.337Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:32:58.337Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:32:58.337Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:32:58.365Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:32:58.367Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:58.368Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:32:58.368Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:32:58.369Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:32:58.372Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:32:58.373Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:32:58.373Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:32:58.374Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:32:58.374Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:32:58.376Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:32:58.377Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:32:58.378Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:32:58.378Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:32:58.378Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:32:58.379Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:33:20.133Z] 捕获API请求: POST http://localhost:3000/api/export/excel
+[2025-08-14T10:33:20.134Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:33:20.135Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:33:20.135Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:33:20.136Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:33:20.136Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:33:20.136Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:33:20.137Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:33:20.137Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:33:20.138Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:33:20.139Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:33:20.139Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:33:20.139Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:33:20.139Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:33:20.140Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:33:20.140Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:33:20.140Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:33:20.152Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:33:20.154Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:33:20.156Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:33:20.157Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167538373_0q91zod1b, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:33:20.157Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:33:20.158Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:33:20.158Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:33:20.159Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:33:20.159Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:33:20.160Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:33:20.161Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:33:20.161Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:33:20.162Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:33:20.162Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:33:20.163Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:33:20.164Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:35:30.882Z] 开始监控用户操作...
+[2025-08-14T10:35:31.045Z] 浏览器启动成功
+[2025-08-14T10:35:31.155Z] 页面创建成功
+[2025-08-14T10:35:31.162Z] 捕获请求: GET http://localhost:3000/
+[2025-08-14T10:35:31.497Z] 捕获请求: GET http://localhost:3000/static/js/bundle.js
+[2025-08-14T10:35:31.783Z] 控制台日志: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2025-08-14T10:35:31.814Z] 已导航到http://localhost:3000
+[2025-08-14T10:35:31.989Z] 控制台日志: Warning: [antd: Dropdown] `overlay` is deprecated. Please use `menu` instead.
+[2025-08-14T10:35:32.026Z] 控制台日志: ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+[2025-08-14T10:35:32.027Z] 控制台日志: ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+[2025-08-14T10:35:32.167Z] 页面加载完成，请进行您的操作
+[2025-08-14T10:35:33.543Z] 捕获请求: GET http://localhost:3000/static/js/vendors-node_modules_antd_es_card_index_js.chunk.js
+[2025-08-14T10:35:33.544Z] 捕获请求: GET http://localhost:3000/static/js/vendors-node_modules_antd_es_statistic_index_js.chunk.js
+[2025-08-14T10:35:33.545Z] 捕获请求: GET http://localhost:3000/static/js/vendors-node_modules_ant-design_icons_es_icons_DollarOutlined_js-node_modules_ant-design_icon-08ad6e.chunk.js
+[2025-08-14T10:35:33.545Z] 捕获请求: GET http://localhost:3000/static/js/src_pages_HomePage_tsx.chunk.js
+[2025-08-14T10:35:33.594Z] 控制台日志: Warning: [antd: Card] `bordered` is deprecated. Please use `variant` instead.
+[2025-08-14T10:35:33.642Z] 捕获请求: GET https://www.transparenttextures.com/patterns/brushed-metal.png
+[2025-08-14T10:36:21.289Z] 捕获请求: GET http://localhost:3000/static/js/vendors-node_modules_antd_es_alert_index_js-node_modules_antd_es_col_index_js-node_modules_an-3a1555.chunk.js
+[2025-08-14T10:36:21.290Z] 捕获请求: GET http://localhost:3000/static/js/vendors-node_modules_ant-design_icons_es_icons_DeleteOutlined_js-node_modules_ant-design_icon-045a34.chunk.js
+[2025-08-14T10:36:21.291Z] 捕获请求: GET http://localhost:3000/static/js/vendors-node_modules_ant-design_icons_es_icons_FileExcelOutlined_js-node_modules_ant-design_i-e7838c.chunk.js
+[2025-08-14T10:36:21.293Z] 捕获请求: GET http://localhost:3000/static/js/src_pages_OptimizationPage_tsx.chunk.js
+[2025-08-14T10:36:21.336Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 0, 分组数: 0, 分组详情: Array(0), 前5个示例: Array(0)}
+[2025-08-14T10:36:21.338Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 0, 分组数: 0, 分组详情: Array(0), 前5个示例: Array(0)}
+[2025-08-14T10:36:21.370Z] 控制台日志: Warning: [rc-collapse] `children` will be removed in next major version. Please use `items` instead.
+[2025-08-14T10:36:29.156Z] 控制台日志: === 设计钢材文件上传开始 ===
+[2025-08-14T10:36:29.157Z] 控制台日志: 文件信息: {name: 西耳墙.xls, size: 30208, type: application/vnd.ms-excel}
+[2025-08-14T10:36:29.180Z] 捕获请求: POST http://localhost:3000/api/upload-design-steels
+[2025-08-14T10:36:29.201Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:36:29.202Z] 控制台日志: Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead.
+[2025-08-14T10:36:29.204Z] 控制台日志: === 解析统计信息 ===
+[2025-08-14T10:36:29.204Z] 控制台日志: 原始行数: 85
+[2025-08-14T10:36:29.204Z] 控制台日志: 有效数据: 85
+[2025-08-14T10:36:29.205Z] 控制台日志: 跳过行数: undefined
+[2025-08-14T10:36:29.205Z] 控制台日志: 字段识别数: undefined
+[2025-08-14T10:36:29.206Z] 控制台日志: 版本信息: V3增强版 - 整合V2所有优点
+[2025-08-14T10:36:29.206Z] 控制台日志: === 设计钢材文件上传完成 ===
+[2025-08-14T10:36:29.207Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:36:29.207Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:36:43.350Z] 控制台日志: === 开始优化执行 ===
+[2025-08-14T10:36:43.351Z] 控制台日志: 🚀 开始优化，发送数据: {designSteels: Array(85), moduleSteels: Array(1), constraints: Object}
+[2025-08-14T10:36:43.391Z] 捕获请求: POST http://localhost:3000/api/optimize
+[2025-08-14T10:36:43.394Z] 控制台日志: ✅ 优化任务已创建: task_1755167803354_80gp7i0gy
+[2025-08-14T10:36:45.410Z] 捕获请求: GET http://localhost:3000/api/task/task_1755167803354_80gp7i0gy
+[2025-08-14T10:36:45.725Z] 控制台日志: ✅ 优化完成: {taskId: task_1755167803354_80gp7i0gy, status: completed, progress: 100, message: 优化完成, createdAt: 2025-08-14T10:36:43.354Z}
+[2025-08-14T10:36:46.766Z] 捕获请求: GET http://localhost:3000/static/js/vendors-node_modules_ant-design_icons_es_icons_FileExcelOutlined_js-node_modules_ant-design_i-bfdaa5.chunk.js
+[2025-08-14T10:36:46.767Z] 捕获请求: GET http://localhost:3000/static/js/src_pages_ResultsPage_tsx.chunk.js
+[2025-08-14T10:36:46.845Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:36:46.845Z] 控制台日志: ⚠️ 使用兼容模式：completeStats不存在，使用原有字段
+[2025-08-14T10:36:46.846Z] 控制台日志: ⚠️ 图表数据兼容模式：completeStats.chartData不存在，使用原有计算逻辑
+[2025-08-14T10:36:46.847Z] 控制台日志: ⚠️ 需求验证兼容模式：completeStats.requirementValidation不存在，使用原有计算逻辑
+[2025-08-14T10:36:46.847Z] 控制台日志: ⚠️ 模数钢材统计兼容模式：completeStats.moduleUsageStats不存在，使用原有计算逻辑
+[2025-08-14T10:36:46.847Z] 控制台日志: 🔍 V3规格化重组: P320*320*12_14379 → 规格: P320*320*12_14379
+[2025-08-14T10:36:46.848Z] 控制台日志: 🔍 V3规格化重组: []150*5_2830 → 规格: []150*5_2830
+[2025-08-14T10:36:46.848Z] 控制台日志: 🔍 V3规格化重组: []200*150*8_5164 → 规格: []200*150*8_5164
+[2025-08-14T10:36:46.849Z] 控制台日志: 🔍 V3规格化重组: []350*250*10_11318 → 规格: []350*250*10_11318
+[2025-08-14T10:36:46.849Z] 控制台日志: 🎯 真正的规格化编号系统完成: {总钢材数: 85, 分组数: 4, 分组详情: Array(4), 前5个示例: Array(5)}
+[2025-08-14T10:36:46.849Z] 控制台日志: ⚠️ 使用兼容模式：completeStats不存在，使用原有字段
+[2025-08-14T10:36:46.850Z] 控制台日志: ⚠️ 图表数据兼容模式：completeStats.chartData不存在，使用原有计算逻辑
+[2025-08-14T10:36:46.850Z] 控制台日志: ⚠️ 需求验证兼容模式：completeStats.requirementValidation不存在，使用原有计算逻辑
+[2025-08-14T10:36:46.850Z] 控制台日志: ⚠️ 模数钢材统计兼容模式：completeStats.moduleUsageStats不存在，使用原有计算逻辑
+[2025-08-14T10:36:46.850Z] 控制台日志: 🔍 V3规格化重组: P320*320*12_14379 → 规格: P320*320*12_14379
+[2025-08-14T10:36:46.851Z] 控制台日志: 🔍 V3规格化重组: []150*5_2830 → 规格: []150*5_2830
+[2025-08-14T10:36:46.851Z] 控制台日志: 🔍 V3规格化重组: []200*150*8_5164 → 规格: []200*150*8_5164
+[2025-08-14T10:36:46.852Z] 控制台日志: 🔍 V3规格化重组: []350*250*10_11318 → 规格: []350*250*10_11318
+[2025-08-14T10:36:46.853Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:36:46.854Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:46.854Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:36:46.855Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167803354_4jnefnphb, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:36:46.855Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:36:46.856Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:36:46.856Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:46.856Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:36:46.857Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:36:46.857Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:36:46.857Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:36:46.858Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:36:46.859Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:36:46.860Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:36:46.860Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:36:46.861Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:36:46.861Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:36:46.861Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:46.862Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:36:46.862Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167803354_4jnefnphb, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:36:46.863Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:36:46.864Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:36:46.864Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:46.865Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:36:46.865Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:36:46.865Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:36:46.866Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:36:46.866Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:36:46.867Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:36:46.867Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:36:46.867Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:36:46.868Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:36:46.868Z] 控制台日志: Warning: [antd: Tabs] `Tabs.TabPane` is deprecated. Please use `items` instead.
+[2025-08-14T10:36:46.870Z] 控制台日志: Warning: [antd: Card] `bodyStyle` is deprecated. Please use `styles.body` instead.
+[2025-08-14T10:36:46.886Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:36:46.887Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:46.888Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:36:46.888Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167803354_4jnefnphb, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:36:46.889Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:36:46.889Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:36:46.890Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:46.890Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:36:46.890Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:36:46.891Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:36:46.892Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:36:46.892Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:36:46.893Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:36:46.893Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:36:46.893Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:36:46.893Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:36:49.553Z] 捕获请求: POST http://localhost:3000/api/export/excel
+[2025-08-14T10:36:49.554Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:36:49.554Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:49.554Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:36:49.555Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167803354_4jnefnphb, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:36:49.555Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:36:49.555Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:36:49.556Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:49.557Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:36:49.557Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:36:49.558Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:36:49.558Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:36:49.559Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:36:49.560Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:36:49.561Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:36:49.561Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:36:49.562Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:36:49.569Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:36:49.570Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:49.571Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:36:49.572Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167803354_4jnefnphb, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:36:49.573Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:36:49.574Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:36:49.575Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:36:49.576Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:36:49.576Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:36:49.577Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:36:49.577Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:36:49.577Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:36:49.578Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:36:49.578Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:36:49.578Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:36:49.579Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:37:14.984Z] 捕获请求: POST http://localhost:3000/api/export/excel
+[2025-08-14T10:37:14.984Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:37:14.985Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:37:14.986Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:37:14.986Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167803354_4jnefnphb, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:37:14.987Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:37:14.988Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:37:14.989Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:37:14.989Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:37:14.990Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:37:14.991Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:37:14.991Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:37:14.992Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:37:14.993Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:37:14.993Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:37:14.994Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:37:14.995Z] 控制台日志: 【ResultsPage V3】自动排查完成
+[2025-08-14T10:37:15.009Z] 控制台日志: 🔍 ResultsPage V3渲染信息: {resultsKeys: Array(4), designSteelsCount: 85, moduleSteelsCount: 1, processedStats: Object, hasDataError: false}
+[2025-08-14T10:37:15.010Z] 控制台日志: 🔍 Processed results content: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:37:15.011Z] 控制台日志: 【ResultsPage V3】自动排查开始
+[2025-08-14T10:37:15.011Z] 控制台日志: 【数据源】results: {success: true, optimizationId: opt_1755167803354_4jnefnphb, solutions: Object, totalLossRate: 3.4475, totalModuleUsed: 40}
+[2025-08-14T10:37:15.012Z] 控制台日志: 【数据源】designSteels: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]
+[2025-08-14T10:37:15.012Z] 控制台日志: 【数据源】moduleSteels: [Object]
+[2025-08-14T10:37:15.013Z] 控制台日志: 【处理结果】processedResults: {totalStats: Object, chartData: Object, requirementValidation: Array(85), moduleUsageStats: Object, regroupedResults: Object}
+[2025-08-14T10:37:15.013Z] 控制台日志: 【一致性检查】后端统计 vs 前端处理:
+[2025-08-14T10:37:15.014Z] 控制台日志: - 后端totalModuleUsed: 40
+[2025-08-14T10:37:15.015Z] 控制台日志: - 前端totalModuleCount: 40
+[2025-08-14T10:37:15.015Z] 控制台日志: - 后端totalMaterial: 480000
+[2025-08-14T10:37:15.016Z] 控制台日志: - 前端totalModuleLength: 480000
+[2025-08-14T10:37:15.016Z] 控制台日志: - 后端totalWaste: 5218
+[2025-08-14T10:37:15.016Z] 控制台日志: - 前端totalWaste: 5218
+[2025-08-14T10:37:15.017Z] 控制台日志: ✅ 数据验证通过，所有需求已满足
+[2025-08-14T10:37:15.017Z] 控制台日志: 【ResultsPage V3】自动排查完成

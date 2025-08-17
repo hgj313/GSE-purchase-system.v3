@@ -1,36 +1,60 @@
-/**
- * Netlify Function - 系统健康检查
- */
+const { Database } = require('../../server/database/Database');
+
 exports.handler = async (event, context) => {
+  // 设置CORS头
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Content-Type': 'application/json'
+  };
+
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
   try {
+    const db = new Database();
+    
+    // 检查数据库连接
+    await db.query('SELECT 1');
+    
+    const healthInfo = {
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      version: '3.0.0',
+      services: {
+        database: 'connected',
+        api: 'running'
+      },
+      endpoints: [
+        'GET /api/health',
+        'POST /api/optimize',
+        'POST /api/validate-constraints',
+        'POST /api/upload-design-steels',
+        'GET /api/optimize/:id/progress',
+        'GET /api/optimize/history',
+        'POST /api/export/excel',
+        'POST /api/export/pdf'
+      ]
+    };
+
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-      },
-      body: JSON.stringify({
-        success: true,
-        message: '钢材采购优化系统 V3.0 运行正常 (Netlify)',
-        version: '3.0.0',
-        timestamp: new Date().toISOString(),
-        platform: 'Netlify Functions',
-        features: ['优化算法', '文件上传', '数据分析', '结果导出']
-      })
+      headers,
+      body: JSON.stringify(healthInfo)
     };
   } catch (error) {
+    console.error('Health check failed:', error);
+    
     return {
-      statusCode: 500,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
+      statusCode: 503,
+      headers,
       body: JSON.stringify({
-        success: false,
-        error: `健康检查失败: ${error.message}`
+        status: 'unhealthy',
+        timestamp: new Date().toISOString(),
+        error: error.message
       })
     };
   }
-}; 
+};
