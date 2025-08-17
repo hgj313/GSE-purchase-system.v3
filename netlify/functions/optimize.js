@@ -25,19 +25,27 @@ exports.handler = async (event, context) => {
 
   try {
     const data = JSON.parse(event.body);
-    const { designSteels, constraints, options = {} } = data;
+    const { designSteels, moduleSteels, constraints } = data;
 
-    if (!designSteels || !Array.isArray(designSteels)) {
+    if (!designSteels || !Array.isArray(designSteels) || designSteels.length === 0) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Invalid design steels data' })
+        body: JSON.stringify({ error: 'Invalid or empty design steels data' })
+      };
+    }
+
+    if (!moduleSteels || !Array.isArray(moduleSteels) || moduleSteels.length === 0) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Invalid or empty module steels data' })
       };
     }
 
     // 验证约束条件
     const validator = new ConstraintValidator();
-    const validationResult = validator.validateConstraints(constraints);
+    const validationResult = validator.validateAllConstraints(designSteels, moduleSteels, constraints);
     
     if (!validationResult.isValid) {
       return {
@@ -45,14 +53,14 @@ exports.handler = async (event, context) => {
         headers,
         body: JSON.stringify({ 
           error: 'Invalid constraints', 
-          details: validationResult.errors 
+          details: validationResult.violations 
         })
       };
     }
 
     // 执行优化
-    const optimizer = new SteelOptimizerV3();
-    const result = await optimizer.optimize(designSteels, constraints, options);
+    const optimizer = new SteelOptimizerV3(designSteels, moduleSteels, constraints);
+    const result = await optimizer.optimize();
 
     // 保存优化历史
     try {
