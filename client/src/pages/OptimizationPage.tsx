@@ -205,8 +205,8 @@ const OptimizationPage: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          filename: file.name,
-          data: base64,
+          fileName: file.name,
+          content: base64,
           type: file.type
         })
       });
