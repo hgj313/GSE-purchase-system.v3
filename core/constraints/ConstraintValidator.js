@@ -403,6 +403,13 @@ class ConstraintValidator {
   }
 
   /**
+   * 验证约束条件（兼容API调用）
+   */
+  validateConstraints(constraints) {
+    return this.validateBasicConstraints(constraints);
+  }
+
+  /**
    * 清空验证历史
    */
   clearHistory() {

@@ -1,4 +1,5 @@
-const DatabaseManager = require('../../server/database/Database');
+// 使用Netlify云端数据库适配器
+const NetlifyDatabase = require('./utils/netlifyDatabase');
 
 exports.handler = async (event, context) => {
   const headers = {
@@ -12,8 +13,8 @@ exports.handler = async (event, context) => {
     return { statusCode: 200, headers, body: '' };
   }
 
-  // 创建数据库管理器
-  const db = DatabaseManager;
+  // 创建Netlify云端数据库实例
+  const db = new NetlifyDatabase();
   await db.init();
 
   try {

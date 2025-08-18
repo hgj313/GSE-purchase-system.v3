@@ -224,6 +224,40 @@ class NetlifyDatabase {
   }
 
   /**
+   * 获取所有优化任务
+   */
+  getOptimizationTasks() {
+    return this.data.optimizationTasks || [];
+  }
+
+  /**
+   * 获取特定优化任务
+   */
+  getOptimizationTask(taskId) {
+    return this.data.optimizationTasks.find(task => task.id === taskId) || null;
+  }
+
+  /**
+   * 更新任务状态（带额外数据）
+   */
+  async updateTaskStatus(taskId, status, extraData = {}) {
+    try {
+      await this.init();
+      const task = this.data.optimizationTasks.find(t => t.id === taskId);
+      if (task) {
+        task.status = status;
+        if (extraData.message) task.message = extraData.message;
+        task.updatedAt = new Date().toISOString();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('❌ 更新任务状态失败:', error);
+      return false;
+    }
+  }
+
+  /**
    * 获取数据库统计信息
    */
   getStats() {

@@ -27,13 +27,50 @@ exports.handler = async (event, context) => {
     const data = JSON.parse(event.body);
     const { designSteels, moduleSteels, constraints } = data;
 
-    // 输入验证
+    // 输入验证 - 添加调试日志
+    console.log('🔍 开始输入验证...');
+    console.log('设计钢材:', JSON.stringify(designSteels, null, 2));
+    console.log('模块钢材:', JSON.stringify(moduleSteels, null, 2));
+
     if (!designSteels || !Array.isArray(designSteels) || designSteels.length === 0) {
       return {
         statusCode: 400,
         headers,
         body: JSON.stringify({ error: 'Invalid or empty design steels data' })
       };
+    }
+
+    // 验证设计钢材的完整性
+    for (let i = 0; i < designSteels.length; i++) {
+      const steel = designSteels[i];
+      if (!steel.length || steel.length <= 0) {
+        return {
+          statusCode: 400,
+          headers,
+          body: JSON.stringify({ 
+            error: `设计钢材${i + 1}：长度必须大于0`,
+            details: [{ type: 'invalidDesignLength', message: `设计钢材${i + 1}：长度必须大于0`, steelIndex: i }]
+          })
+        };
+      }
+      if (!steel.quantity || steel.quantity <= 0) {
+        return {
+          statusCode: 400,
+          headers,
+          body: JSON.stringify({ 
+            error: `设计钢材${i + 1}：数量必须大于0`,
+            details: [{ type: 'invalidDesignQuantity', message: `设计钢材${i + 1}：数量必须大于0`, steelIndex: i }]
+          })
+        };
+      }
+      
+      // 添加默认截面面积（如果没有）
+      if (!steel.crossSection || steel.crossSection <= 0) {
+        // 根据直径估算截面面积（πr²）
+        const diameter = steel.diameter || 25;
+        steel.crossSection = Math.round(Math.PI * Math.pow(diameter/2, 2));
+        console.log(`设计钢材${i + 1}：自动计算截面面积为${steel.crossSection}`);
+      }
     }
 
     if (!moduleSteels || !Array.isArray(moduleSteels) || moduleSteels.length === 0) {
@@ -44,9 +81,35 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // 约束验证
+    // 验证模块钢材的完整性
+    for (let i = 0; i < moduleSteels.length; i++) {
+      const module = moduleSteels[i];
+      if (!module.length || module.length <= 0) {
+        return {
+          statusCode: 400,
+          headers,
+          body: JSON.stringify({ 
+            error: `模块钢材${i + 1}：长度必须大于0`,
+            details: [{ type: 'invalidModuleLength', message: `模块钢材${i + 1}：长度必须大于0`, moduleIndex: i }]
+          })
+        };
+      }
+      if (!module.quantity || module.quantity <= 0) {
+        module.quantity = 1; // 默认数量
+        console.log(`模块钢材${i + 1}：设置默认数量为1`);
+      }
+    }
+
+    // 约束验证 - 添加调试日志
+    console.log('🔍 开始约束验证...');
+    console.log('设计钢材:', JSON.stringify(designSteels, null, 2));
+    console.log('模块钢材:', JSON.stringify(moduleSteels, null, 2));
+    console.log('约束条件:', JSON.stringify(constraints, null, 2));
+    
     const validator = new ConstraintValidator();
     const validationResult = validator.validateAllConstraints(designSteels, moduleSteels, constraints);
+    
+    console.log('验证结果:', validationResult);
     
     if (!validationResult.isValid) {
       return {

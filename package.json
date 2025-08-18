@@ -16,7 +16,11 @@
     "quick-check": "node scripts/quick-check.js",
     "clean": "node -e \"const fs = require('fs'); const path = require('path'); function rmdir(dir) { try { if (fs.existsSync(dir)) { fs.rmSync(dir, { recursive: true, force: true }); console.log('Cleaned:', dir); } } catch (e) { console.log('Skip:', dir, e.message); } } rmdir('client/build'); rmdir('client/node_modules/.cache');\"",
     "analyze": "cd client && npm run analyze",
-    "netlify-build": "npm ci && npm ci --prefix client && npm run build --prefix client"
+    "netlify-build": "npm ci && npm ci --prefix client && npm run build --prefix client",
+    "deploy:github": "node deploy-to-github.js",
+    "verify:github": "node verify-github-deployment.js",
+    "test:local": "node test-local-fix.js",
+    "test:cloud": "node test-correct-cloud.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

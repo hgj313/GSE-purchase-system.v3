@@ -1,4 +1,4 @@
-const { ConstraintValidator } = require('../../core/constraints/ConstraintValidator');
+const ConstraintValidator = require('../../core/constraints/ConstraintValidator');
 
 exports.handler = async (event, context) => {
   // 设置CORS头
