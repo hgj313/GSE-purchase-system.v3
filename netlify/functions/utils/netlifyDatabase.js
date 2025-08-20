@@ -31,6 +31,11 @@ class NetlifyDatabase {
   async _initialize() {
     try {
       console.log('🌐 初始化Netlify云端数据库...');
+
+      // 存储模式检查
+      if (process.env.STORAGE_TYPE !== 'memory') {
+        console.warn('⚠️ 当前使用内存存储模式，无需数据库配置');
+      }
       
       // 在Netlify环境中使用内存存储
       this.data = this.getDefaultData();

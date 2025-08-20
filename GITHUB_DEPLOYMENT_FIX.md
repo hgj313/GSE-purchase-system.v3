@@ -44,6 +44,21 @@ git push origin main
 
 #### 3. 验证部署成功
 
+### 环境变量配置
+以下变量需在Netlify控制台设置：
+
+```env
+# 内存模式运行（无需数据库配置）
+STORAGE_TYPE=memory
+OPTIMIZER_TIMEOUT=300
+```
+
+配置步骤：
+1. 登录Netlify控制台
+2. 进入站点设置 > Environment
+3. 添加上述变量
+4. 重新部署应用
+
 ### ✅ 部署验证测试
 
 #### 测试端点（部署后访问）

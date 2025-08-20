@@ -14,7 +14,8 @@ exports.handler = async (event, context) => {
   }
 
   // 创建Netlify云端数据库实例
-  const db = new NetlifyDatabase();
+  const { NetlifyDatabase } = require('../../server/database/Database');
+const db = new NetlifyDatabase();
   await db.init();
 
   try {
