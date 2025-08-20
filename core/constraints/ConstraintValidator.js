@@ -82,14 +82,16 @@ class ConstraintValidator {
       });
     }
 
-    if (constraints.timeLimit < validationLimits.timeLimit.min || constraints.timeLimit > validationLimits.timeLimit.max) {
+    const timeLimitMs = constraintManager.secondsToMs(constraints.timeLimit);
+    if (timeLimitMs < validationLimits.timeLimit.min || timeLimitMs > validationLimits.timeLimit.max) {
       const minSeconds = constraintManager.msToSeconds(validationLimits.timeLimit.min);
       const maxSeconds = constraintManager.msToSeconds(validationLimits.timeLimit.max);
       violations.push({
         type: 'timeLimit',
-        message: `计算时间限制必须在${minSeconds}-${maxSeconds}秒范围内`,
+        message: `时间限制输入值${constraints.timeLimit}秒超出允许范围 (${minSeconds}-${maxSeconds}秒)`,
         current: constraints.timeLimit,
-        suggested: defaults.timeLimit
+        suggested: defaults.timeLimit,
+        conversionNote: '前端输入单位为秒，已自动转换为毫秒验证'
       });
     }
 
