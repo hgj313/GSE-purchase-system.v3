@@ -34,7 +34,13 @@ exports.handler = async (event, context) => {
     }
 
     const validator = new ConstraintValidator();
-    const result = validator.validateConstraints(constraints);
+    const result = validator.validateAllConstraints([], [], constraints);
+    if (!result.isValid) {
+      const errorDetails = result.violations
+        .map(v => `${v.type}: ${v.message}`)
+        .join('；');
+      throw new Error(`约束验证失败 - ${errorDetails}`);
+    }
 
     return {
       statusCode: 200,

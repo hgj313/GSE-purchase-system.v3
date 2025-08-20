@@ -381,7 +381,7 @@ class OptimizationService {
     const defaults = constraintManager.getDefaultConstraints();
     
     // 使用约束管理器进行单位转换：前端秒 -> 后端毫秒
-    let timeLimitMs = defaults.timeLimit; // 默认已经是毫秒
+    let timeLimitMs = defaults.timeLimit; // 默认是毫秒
     if (constraintsData.timeLimit !== undefined) {
       timeLimitMs = constraintManager.secondsToMs(constraintsData.timeLimit); // 秒转毫秒
     }

@@ -112,11 +112,14 @@ exports.handler = async (event, context) => {
     console.log('验证结果:', validationResult);
     
     if (!validationResult.isValid) {
+      const errorDetails = validationResult.violations
+        .map(v => `${v.type}: ${v.message}`)
+        .join('；');
       return {
         statusCode: 400,
         headers,
         body: JSON.stringify({
-          error: 'Invalid constraints', 
+          error: `约束验证失败 - ${errorDetails}`,
           details: validationResult.violations,
           suggestions: validationResult.suggestions
         })
