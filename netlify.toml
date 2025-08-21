@@ -8,5 +8,5 @@
   CI = "false"
 
 [build]
-  command = "npm ci && npm run build --prefix client"
+  command = "npm run build:netlify"
   publish = "client/build"
