@@ -8,5 +8,5 @@
   CI = "false"
 
 [build]
-  command = "cd client && npm run build"
+  command = "npm ci && npm run build --prefix client"
   publish = "client/build"
