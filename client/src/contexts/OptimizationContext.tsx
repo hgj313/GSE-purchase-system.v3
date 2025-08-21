@@ -90,7 +90,7 @@ export const OptimizationContextProvider: React.FC<{ children: ReactNode }> = ({
 
       console.log('🚀 开始优化，发送数据:', optimizationData);
 
-      const response = await fetch('/api/optimize', {
+      const response = await fetch('/.netlify/functions/optimize', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API路径测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>API路径测试</h1>
+    
+    <button onclick="testHealth()">测试健康检查</button>
+    <button onclick="testUpload()">测试上传接口</button>
+    <button onclick="testOptimize()">测试优化接口</button>
+    
+    <div id="results"></div>
+
+    <script>
+        function addResult(title, success, data) {
+            const div = document.createElement('div');
+            div.className = `test-result ${success ? 'success' : 'error'}`;
+            div.innerHTML = `
+                <h3>${title}</h3>
+                <p>状态: ${success ? '成功' : '失败'}</p>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+            `;
+            document.getElementById('results').appendChild(div);
+        }
+
+        async function testHealth() {
+            try {
+                const response = await fetch('/.netlify/functions/health');
+                const data = await response.json();
+                addResult('健康检查', response.ok, data);
+            } catch (error) {
+                addResult('健康检查', false, { error: error.message });
+            }
+        }
+
+        async function testUpload() {
+            try {
+                const response = await fetch('/.netlify/functions/upload-design-steels', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'csv',
+                        data: '长度,数量\n1000,5\n2000,3'
+                    })
+                });
+                const data = await response.json();
+                addResult('上传测试', response.ok, data);
+            } catch (error) {
+                addResult('上传测试', false, { error: error.message });
+            }
+        }
+
+        async function testOptimize() {
+            try {
+                const response = await fetch('/.netlify/functions/optimize', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        designSteels: [{ length: 1000, quantity: 2 }],
+                        stockMaterials: [{ length: 6000, quantity: 1 }],
+                        constraints: { wasteThreshold: 600, targetLossRate: 5 }
+                    })
+                });
+                const data = await response.json();
+                addResult('优化测试', response.ok, data);
+            } catch (error) {
+                addResult('优化测试', false, { error: error.message });
+            }
+        }
+
+        // 页面加载时自动测试
+        testHealth();
+    </script>
+</body>
+</html>

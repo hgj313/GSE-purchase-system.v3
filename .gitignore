@@ -66,3 +66,6 @@ screenshots/
 # 部署报告
 *-report.json
 *-check.json
+
+# Local Netlify folder
+.netlify

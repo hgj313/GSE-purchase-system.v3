@@ -10,3 +10,6 @@
 [build]
   command = "npm run build:netlify"
   publish = "client/build"
+
+[functions]
+  directory = "netlify/functions"

@@ -199,7 +199,7 @@ const OptimizationPage: React.FC = () => {
       const base64 = btoa(Array.from(uint8Array, byte => String.fromCharCode(byte)).join(''));
       
       // API调用
-      const response = await fetch('/api/upload-design-steels', {
+      const response = await fetch('/.netlify/functions/upload-design-steels', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

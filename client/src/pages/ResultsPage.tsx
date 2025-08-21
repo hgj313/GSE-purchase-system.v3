@@ -146,12 +146,16 @@ const ResultsPage: React.FC = () => {
         }
       }
 
-      const response = await fetch('/api/export/excel', {
+      const response = await fetch('/.netlify/functions/export', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(exportData),
+        body: JSON.stringify({
+          results: results,
+          filename: `钢材优化结果_${new Date().toISOString().split('T')[0]}.xlsx`,
+          format: 'excel'
+        })
       });
 
       if (!response.ok) {
@@ -214,12 +218,16 @@ const ResultsPage: React.FC = () => {
         designSteels: designSteelsMemo
       };
 
-      const response = await fetch('/api/export/pdf', {
+      const response = await fetch('/.netlify/functions/export', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(exportData),
+        body: JSON.stringify({
+          results: results,
+          filename: `钢材优化报告_${new Date().toISOString().split('T')[0]}.pdf`,
+          format: 'pdf'
+        })
       });
 
       if (!response.ok) {
