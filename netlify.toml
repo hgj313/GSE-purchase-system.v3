@@ -1,36 +1,8 @@
-[build]
-  environment = { ENV_FILE = ".env" }
-
 [build.environment]
+  ENV_FILE = ".env"
   NODE_VERSION = "18"
   NPM_VERSION = "9"
   REACT_APP_API_URL = "/.netlify/functions"
   GENERATE_SOURCEMAP = "false"
   SKIP_PREFLIGHT_CHECK = "true"
   CI = "false"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[dev]
-  command = "npm run dev"
-  port = 3000
-  publish = "client/build"
-
-[functions]
-  node_bundler = "esbuild"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
