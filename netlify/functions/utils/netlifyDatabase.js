@@ -6,6 +6,12 @@
 
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: process.env.ENV_FILE || '.env' });
+
+const dbConfig = {
+  storageType: process.env.STORAGE_TYPE || 'memory',
+  connectionString: process.env.DATABASE_URL
+};
 
 class NetlifyDatabase {
   constructor() {
