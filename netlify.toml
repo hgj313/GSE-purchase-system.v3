@@ -6,3 +6,7 @@
   GENERATE_SOURCEMAP = "false"
   SKIP_PREFLIGHT_CHECK = "true"
   CI = "false"
+
+[build]
+  command = "cd client && npm run build"
+  publish = "client/build"

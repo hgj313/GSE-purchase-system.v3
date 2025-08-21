@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "craco start --port 3000",
-    "build": "craco build",
+    "build": "react-scripts build",
     "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
     "test": "craco test",
     "eject": "react-scripts eject"
