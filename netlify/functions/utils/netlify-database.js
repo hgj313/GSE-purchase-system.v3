@@ -1,85 +1,11 @@
 /**
- * JSON数据库管理类
- * 使用lowdb存储钢材优化系统数据
- * 优点：无需编译、跨平台、易于调试
- * 修复ES模块兼容性问题
+ * Netlify函数专用内存数据库
+ * 完全避免文件系统操作和ES模块兼容性问题
  */
-class DatabaseManager {
+class NetlifyDatabase {
   constructor() {
-    this.db = null;
-    this.dbPath = null;
-    this.backupDir = null;
-    this.fs = null;
-    this.path = null;
-    this.Low = null;
-    this.JSONFile = null;
-  }
-
-  /**
-   * 动态加载依赖模块
-   */
-  async loadModules() {
-    try {
-      // 动态导入ES模块
-      const low = await import('lowdb');
-      const lowNode = await import('lowdb/node');
-      
-      this.Low = low.Low;
-      this.JSONFile = lowNode.JSONFile;
-      
-      // 导入Node.js内置模块
-      this.fs = await import('fs');
-      this.path = await import('path');
-      
-      // 设置路径
-      this.dbPath = this.path.join(__dirname, 'steel_system.json');
-      this.backupDir = this.path.join(__dirname, 'backups');
-      
-      return true;
-    } catch (error) {
-      console.error('加载模块失败:', error);
-      return false;
-    }
-  }
-
-  /**
-   * 初始化数据库连接
-   */
-  async init() {
-    try {
-      console.log('🗄️ 正在初始化JSON数据库...');
-      
-      // 加载必要模块
-      const modulesLoaded = await this.loadModules();
-      if (!modulesLoaded) {
-        throw new Error('无法加载必要模块');
-      }
-      
-      // 确保备份目录存在
-      if (!this.fs.existsSync(this.backupDir)) {
-        this.fs.mkdirSync(this.backupDir, { recursive: true });
-      }
-      
-      // 创建数据库适配器
-      const adapter = new this.JSONFile(this.dbPath);
-      this.db = new this.Low(adapter, this.getDefaultData());
-      
-      // 读取数据库文件
-      await this.db.read();
-
-      // 如果文件不存在（首次运行或被删除），立即写入默认数据到磁盘
-      if (!this.fs.existsSync(this.dbPath)) {
-        await this.save();
-      }
-      
-      console.log('✅ JSON数据库初始化成功');
-      console.log(`📍 数据库文件位置: ${this.dbPath}`);
-      
-      return true;
-    } catch (error) {
-      console.error('❌ 数据库初始化失败:', error);
-      return false;
-    }
+    this.data = this.getDefaultData();
+    this.initialized = false;
   }
 
   /**
@@ -121,47 +47,40 @@ class DatabaseManager {
       },
       operationLogs: [],
       settings: {
-        autoBackup: true,
-        maxLogEntries: 1000,
-        maxBackups: 10
+        autoBackup: false, // 内存数据库不需要备份
+        maxLogEntries: 100,
+        maxBackups: 0
       }
     };
+  }
+
+  /**
+   * 初始化数据库（空操作，内存数据库不需要）
+   */
+  async init() {
+    this.initialized = true;
+    return true;
   }
 
   /**
    * 获取数据库连接
    */
   getConnection() {
-    if (!this.db) {
-      throw new Error('数据库未初始化，请先调用 init() 方法');
-    }
-    return this.db;
+    return { data: this.data };
   }
 
   /**
-   * 保存数据到文件
+   * 保存数据（空操作，内存数据库不需要持久化）
    */
   async save() {
-    try {
-      await this.db.write();
-      return true;
-    } catch (error) {
-      console.error('保存数据失败:', error);
-      return false;
-    }
+    return true;
   }
 
   /**
-   * 重新加载数据
+   * 重新加载数据（空操作，内存数据库不需要）
    */
   async reload() {
-    try {
-      await this.db.read();
-      return true;
-    } catch (error) {
-      console.error('重新加载数据失败:', error);
-      return false;
-    }
+    return true;
   }
 
   /**
@@ -169,7 +88,7 @@ class DatabaseManager {
    */
   getStats() {
     try {
-      const data = this.db.data;
+      const data = this.data;
       
       const stats = {
         designSteels: data.designSteels?.length || 0,
@@ -177,7 +96,7 @@ class DatabaseManager {
         optimizationTasks: data.optimizationTasks?.length || 0,
         completedTasks: data.optimizationTasks?.filter(task => task.status === 'completed')?.length || 0,
         operationLogs: data.operationLogs?.length || 0,
-        databaseSize: this.getDatabaseSize(),
+        databaseSize: '内存存储',
         lastUpdated: data.systemStats?.lastUpdated || new Date().toISOString()
       };
       
@@ -189,77 +108,7 @@ class DatabaseManager {
   }
 
   /**
-   * 获取数据库文件大小
-   */
-  getDatabaseSize() {
-    try {
-      const stats = this.fs.statSync(this.dbPath);
-      const sizeInBytes = stats.size;
-      const sizeInKB = (sizeInBytes / 1024).toFixed(2);
-      return `${sizeInKB} KB`;
-    } catch (error) {
-      return '未知';
-    }
-  }
-
-  /**
-   * 备份数据库
-   */
-  async backup(backupPath) {
-    try {
-      if (!backupPath) {
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        backupPath = this.path.join(this.backupDir, `backup_${timestamp}.json`);
-      }
-      
-      // 确保数据是最新的
-      await this.db.read();
-      
-      // 复制文件
-      this.fs.copyFileSync(this.dbPath, backupPath);
-      
-      console.log(`✅ 数据库备份成功: ${backupPath}`);
-      
-      // 清理旧备份（保留最新10个）
-      this.cleanOldBackups();
-      
-      return backupPath;
-    } catch (error) {
-      console.error('❌ 数据库备份失败:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * 清理旧备份文件
-   */
-  cleanOldBackups() {
-    try {
-      const files = this.fs.readdirSync(this.backupDir)
-        .filter(file => file.startsWith('backup_') && file.endsWith('.json'))
-        .map(file => ({
-          name: file,
-          path: this.path.join(this.backupDir, file),
-          time: this.fs.statSync(this.path.join(this.backupDir, file)).mtime
-        }))
-        .sort((a, b) => b.time - a.time);
-
-      // 保留最新的10个备份
-      const maxBackups = this.db.data.settings?.maxBackups || 10;
-      if (files.length > maxBackups) {
-        const filesToDelete = files.slice(maxBackups);
-        filesToDelete.forEach(file => {
-          this.fs.unlinkSync(file.path);
-          console.log(`🗑️ 删除旧备份: ${file.name}`);
-        });
-      }
-    } catch (error) {
-      console.error('清理旧备份失败:', error);
-    }
-  }
-
-  /**
-   * 记录操作日志
+   * 记录操作日志（简化版）
    */
   async logOperation(type, description, details = null, req = null) {
     try {
@@ -268,20 +117,18 @@ class DatabaseManager {
         operationType: type,
         description: description,
         details: details,
-        ipAddress: req ? (req.ip || req.connection?.remoteAddress || null) : null,
-        userAgent: req ? req.get?.('User-Agent') : null,
         createdAt: new Date().toISOString()
       };
 
-      this.db.data.operationLogs.push(log);
+      this.data.operationLogs.push(log);
       
       // 限制日志数量
-      const maxLogs = this.db.data.settings?.maxLogEntries || 1000;
-      if (this.db.data.operationLogs.length > maxLogs) {
-        this.db.data.operationLogs = this.db.data.operationLogs.slice(-maxLogs);
+      const maxLogs = this.data.settings?.maxLogEntries || 100;
+      if (this.data.operationLogs.length > maxLogs) {
+        this.data.operationLogs = this.data.operationLogs.slice(-maxLogs);
       }
       
-      await this.save();
+      return true;
     } catch (error) {
       console.error('记录操作日志失败:', error);
     }
@@ -292,12 +139,12 @@ class DatabaseManager {
    */
   async updateSystemStats(updates) {
     try {
-      this.db.data.systemStats = {
-        ...this.db.data.systemStats,
+      this.data.systemStats = {
+        ...this.data.systemStats,
         ...updates,
         lastUpdated: new Date().toISOString()
       };
-      await this.save();
+      return true;
     } catch (error) {
       console.error('更新系统统计失败:', error);
     }
@@ -308,7 +155,7 @@ class DatabaseManager {
    */
   async saveDesignSteels(steels) {
     try {
-      this.db.data.designSteels = steels.map(steel => ({
+      this.data.designSteels = steels.map(steel => ({
         ...steel,
         updatedAt: new Date().toISOString(),
         createdAt: steel.createdAt || new Date().toISOString()
@@ -318,7 +165,6 @@ class DatabaseManager {
         totalDesignSteels: steels.length
       });
       
-      await this.save();
       return true;
     } catch (error) {
       console.error('保存设计钢材失败:', error);
@@ -327,7 +173,7 @@ class DatabaseManager {
   }
 
   getDesignSteels() {
-    return this.db.data.designSteels || [];
+    return this.data.designSteels || [];
   }
 
   /**
@@ -335,7 +181,7 @@ class DatabaseManager {
    */
   async saveModuleSteels(steels) {
     try {
-      this.db.data.moduleSteels = steels.map(steel => ({
+      this.data.moduleSteels = steels.map(steel => ({
         ...steel,
         updatedAt: new Date().toISOString(),
         createdAt: steel.createdAt || new Date().toISOString()
@@ -345,7 +191,6 @@ class DatabaseManager {
         totalModuleSteels: steels.length
       });
       
-      await this.save();
       return true;
     } catch (error) {
       console.error('保存模数钢材失败:', error);
@@ -354,7 +199,7 @@ class DatabaseManager {
   }
 
   getModuleSteels() {
-    return this.db.data.moduleSteels || [];
+    return this.data.moduleSteels || [];
   }
 
   /**
@@ -362,7 +207,7 @@ class DatabaseManager {
    */
   async saveOptimizationTask(task) {
     try {
-      const existingIndex = this.db.data.optimizationTasks.findIndex(t => t.id === task.id);
+      const existingIndex = this.data.optimizationTasks.findIndex(t => t.id === task.id);
       
       const taskWithTimestamp = {
         ...task,
@@ -371,20 +216,19 @@ class DatabaseManager {
       };
       
       if (existingIndex >= 0) {
-        this.db.data.optimizationTasks[existingIndex] = taskWithTimestamp;
+        this.data.optimizationTasks[existingIndex] = taskWithTimestamp;
       } else {
-        this.db.data.optimizationTasks.push(taskWithTimestamp);
+        this.data.optimizationTasks.push(taskWithTimestamp);
       }
       
       // 如果是完成状态，更新总优化次数
       if (task.status === 'completed') {
-        const completedCount = this.db.data.optimizationTasks.filter(t => t.status === 'completed').length;
+        const completedCount = this.data.optimizationTasks.filter(t => t.status === 'completed').length;
         await this.updateSystemStats({
           totalOptimizations: completedCount
         });
       }
       
-      await this.save();
       return true;
     } catch (error) {
       console.error('保存优化任务失败:', error);
@@ -393,11 +237,11 @@ class DatabaseManager {
   }
 
   getOptimizationTasks() {
-    return this.db.data.optimizationTasks || [];
+    return this.data.optimizationTasks || [];
   }
 
   getOptimizationTask(id) {
-    return this.db.data.optimizationTasks?.find(task => task.id === id) || null;
+    return this.data.optimizationTasks?.find(task => task.id === id) || null;
   }
 
   /**
@@ -426,10 +270,7 @@ class DatabaseManager {
         updatedAt: new Date().toISOString()
       };
       
-      this.db.data.optimizationTasks.push(newTask);
-      await this.save();
-      
-      console.log(`✅ 创建优化任务: ${taskId}`);
+      this.data.optimizationTasks.push(newTask);
       return taskId;
     } catch (error) {
       console.error('创建优化任务失败:', error);
@@ -442,16 +283,16 @@ class DatabaseManager {
    */
   async updateTaskStatus(taskId, status, updates = {}) {
     try {
-      const taskIndex = this.db.data.optimizationTasks.findIndex(t => t.id === taskId);
+      const taskIndex = this.data.optimizationTasks.findIndex(t => t.id === taskId);
       
       if (taskIndex === -1) {
         throw new Error(`任务不存在: ${taskId}`);
       }
       
-      const task = this.db.data.optimizationTasks[taskIndex];
+      const task = this.data.optimizationTasks[taskIndex];
       
       // 更新任务数据
-      this.db.data.optimizationTasks[taskIndex] = {
+      this.data.optimizationTasks[taskIndex] = {
         ...task,
         status: status,
         updatedAt: new Date().toISOString(),
@@ -460,17 +301,14 @@ class DatabaseManager {
       
       // 如果任务完成或失败，设置结束时间
       if (status === 'completed' || status === 'failed') {
-        this.db.data.optimizationTasks[taskIndex].endTime = new Date().toISOString();
+        this.data.optimizationTasks[taskIndex].endTime = new Date().toISOString();
         
         // 计算执行时间
         const startTime = new Date(task.startTime).getTime();
         const endTime = Date.now();
-        this.db.data.optimizationTasks[taskIndex].executionTime = endTime - startTime;
+        this.data.optimizationTasks[taskIndex].executionTime = endTime - startTime;
       }
       
-      await this.save();
-      
-      console.log(`📝 任务状态更新: ${taskId} -> ${status}`);
       return true;
     } catch (error) {
       console.error('更新任务状态失败:', error);
@@ -483,18 +321,16 @@ class DatabaseManager {
    */
   async updateTaskProgress(taskId, progress, message = '') {
     try {
-      const taskIndex = this.db.data.optimizationTasks.findIndex(t => t.id === taskId);
+      const taskIndex = this.data.optimizationTasks.findIndex(t => t.id === taskId);
       
       if (taskIndex === -1) {
         console.warn(`任务不存在: ${taskId}`);
         return false;
       }
       
-      this.db.data.optimizationTasks[taskIndex].progress = progress;
-      this.db.data.optimizationTasks[taskIndex].message = message;
-      this.db.data.optimizationTasks[taskIndex].updatedAt = new Date().toISOString();
-      
-      await this.save();
+      this.data.optimizationTasks[taskIndex].progress = progress;
+      this.data.optimizationTasks[taskIndex].message = message;
+      this.data.optimizationTasks[taskIndex].updatedAt = new Date().toISOString();
       
       console.log(`📊 任务进度更新: ${taskId} -> ${progress}% (${message})`);
       return true;
@@ -522,7 +358,6 @@ class DatabaseManager {
       });
     } catch (error) {
       console.error('设置任务结果失败:', error);
-      console.error('失败的结果数据类型:', typeof results);
       return false;
     }
   }
@@ -539,7 +374,6 @@ class DatabaseManager {
       if (error && typeof error === 'object') {
         errorMessage = error.message || '未知错误';
         
-        // 尝试保留更详细的错误信息
         errorDetails = {
           message: error.message,
           stack: error.stack,
@@ -554,8 +388,8 @@ class DatabaseManager {
         errorDetails: errorDetails,
         message: `优化失败: ${errorMessage}`
       });
-    } catch (dbError) {
-      console.error('设置任务错误失败:', dbError);
+    } catch (error) {
+      console.error('设置任务错误失败:', error);
       return false;
     }
   }
@@ -564,7 +398,7 @@ class DatabaseManager {
    * 获取活跃任务（正在执行的任务）
    */
   getActiveTasks() {
-    return this.db.data.optimizationTasks?.filter(task => 
+    return this.data.optimizationTasks?.filter(task => 
       task.status === 'pending' || task.status === 'running'
     ) || [];
   }
@@ -576,18 +410,17 @@ class DatabaseManager {
     try {
       const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
       
-      const beforeCount = this.db.data.optimizationTasks.length;
-      this.db.data.optimizationTasks = this.db.data.optimizationTasks.filter(task => {
+      const beforeCount = this.data.optimizationTasks.length;
+      this.data.optimizationTasks = this.data.optimizationTasks.filter(task => {
         // 保留活跃任务和24小时内的任务
         return (task.status === 'pending' || task.status === 'running') || 
                (task.updatedAt > oneDayAgo);
       });
       
-      const afterCount = this.db.data.optimizationTasks.length;
+      const afterCount = this.data.optimizationTasks.length;
       const cleanedCount = beforeCount - afterCount;
       
       if (cleanedCount > 0) {
-        await this.save();
         console.log(`🧹 清理了 ${cleanedCount} 个过期任务`);
       }
       
@@ -602,7 +435,7 @@ class DatabaseManager {
    * 获取操作日志
    */
   getOperationLogs(limit = 100) {
-    const logs = this.db.data.operationLogs || [];
+    const logs = this.data.operationLogs || [];
     return logs.slice(-limit).reverse(); // 返回最新的日志
   }
 
@@ -611,11 +444,10 @@ class DatabaseManager {
    */
   async exportData() {
     try {
-      await this.db.read();
       return {
         exportTime: new Date().toISOString(),
         version: '3.0.0',
-        data: this.db.data
+        data: this.data
       };
     } catch (error) {
       console.error('导出数据失败:', error);
@@ -628,21 +460,17 @@ class DatabaseManager {
    */
   async importData(data) {
     try {
-      // 备份当前数据
-      await this.backup();
-      
       // 验证数据格式
       if (!data.data || typeof data.data !== 'object') {
         throw new Error('无效的数据格式');
       }
       
       // 合并数据
-      this.db.data = {
+      this.data = {
         ...this.getDefaultData(),
         ...data.data
       };
       
-      await this.save();
       console.log('✅ 数据导入成功');
       return true;
     } catch (error) {
@@ -653,7 +481,7 @@ class DatabaseManager {
 }
 
 // 创建单例实例
-const databaseManager = new DatabaseManager();
+const netlifyDatabase = new NetlifyDatabase();
 
 // 兼容CommonJS和ES模块
-module.exports = databaseManager;
+module.exports = netlifyDatabase;

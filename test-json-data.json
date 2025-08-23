@@ -1,0 +1,22 @@
+[
+  {
+    "length": 1300,
+    "quantity": 7,
+    "crossSection": 125,
+    "componentNumber": "GJ007",
+    "specification": "型号G",
+    "partNumber": "BJ007",
+    "material": "Q235",
+    "note": "JSON测试1"
+  },
+  {
+    "length": 1700,
+    "quantity": 9,
+    "crossSection": 135,
+    "componentNumber": "GJ008",
+    "specification": "型号H",
+    "partNumber": "BJ008",
+    "material": "Q345",
+    "note": "JSON测试2"
+  }
+]

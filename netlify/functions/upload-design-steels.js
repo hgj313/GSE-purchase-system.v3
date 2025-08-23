@@ -1,4 +1,5 @@
-const { Database } = require('../../server/database/Database');
+// 使用Netlify专用内存数据库
+const Database = require('./utils/netlify-database');
 const XLSX = require('xlsx');
 
 exports.handler = async (event, context) => {
@@ -23,7 +24,18 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const data = JSON.parse(event.body);
+    let data;
+    try {
+      data = JSON.parse(event.body);
+    } catch (parseError) {
+      console.error('JSON解析失败:', parseError);
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Invalid JSON format' })
+      };
+    }
+
     const { fileName, content, type } = data;
 
     if (!fileName || !content) {
@@ -55,17 +67,28 @@ exports.handler = async (event, context) => {
       try {
         const csvContent = fileBuffer.toString('utf8');
         const lines = csvContent.trim().split('\n');
+        
+        if (lines.length < 2) {
+          return {
+            statusCode: 400,
+            headers,
+            body: JSON.stringify({ error: 'CSV文件格式错误: 至少需要标题行和数据行' })
+          };
+        }
+
         const headers = lines[0].split(',').map(h => h.trim());
         
         for (let i = 1; i < lines.length; i++) {
           const values = lines[i].split(',').map(v => v.trim());
-          const steel = {};
-          headers.forEach((header, index) => {
-            if (values[index]) {
-              steel[header] = isNaN(values[index]) ? values[index] : parseFloat(values[index]);
-            }
-          });
-          designSteels.push(steel);
+          if (values.length === headers.length) {
+            const steel = {};
+            headers.forEach((header, index) => {
+              if (values[index]) {
+                steel[header] = isNaN(values[index]) ? values[index] : parseFloat(values[index]);
+              }
+            });
+            designSteels.push(steel);
+          }
         }
       } catch (csvError) {
         console.error('CSV解析失败:', csvError);
@@ -147,15 +170,13 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // 保存上传记录
+    // 使用Netlify内存数据库保存数据
     try {
-      const db = new Database();
-      await db.query(`
-        INSERT INTO file_uploads (file_name, file_type, content, uploaded_at)
-        VALUES (?, ?, ?, datetime('now'))
-      `, [fileName, type, JSON.stringify(designSteels)]);
+      await Database.init();
+      await Database.saveDesignSteels(designSteels);
+      console.log('数据已保存到Netlify内存数据库');
     } catch (dbError) {
-      console.warn('Failed to save upload record:', dbError);
+      console.warn('保存到内存数据库失败:', dbError);
     }
 
     // 计算统计信息
@@ -177,13 +198,13 @@ exports.handler = async (event, context) => {
         success: true,
         fileName,
         count: designSteels.length,
-        designSteels: designSteels,  // 客户端期望的字段名
+        designSteels: designSteels,
         debugInfo: {
           原始行数: designSteels.length,
           有效数据: designSteels.length,
           截面面积统计: crossSectionStats,
           规格统计: specificationStats,
-          版本信息: 'Netlify V3增强版'
+          版本信息: 'Netlify V3内存版'
         }
       })
     };
@@ -196,7 +217,8 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         error: 'File upload failed',
-        message: error.message
+        message: error.message,
+        stack: error.stack
       })
     };
   }
